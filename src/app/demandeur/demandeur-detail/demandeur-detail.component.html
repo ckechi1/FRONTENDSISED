@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/demandeurs']"><mat-icon>keyboard_backspace
+      </mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title ><h2>{{demandeur.nom}}</h2></mat-card-title> 
+        <mat-card-title><h3>{{demandeur.prenom}}</h3></mat-card-title> 
+        <mat-card-subtitle><h4>{{demandeur.email}}</h4></mat-card-subtitle> 
+      </mat-card-header>
+      <mat-card-content>
+        <dl>
+          <dt><h4> Autre info : </h4></dt>
+          <dd>genre : {{demandeur.genre}}</dd> 
+          <dd>nationalité : {{demandeur.nationalite}}</dd>
+          <dd>date de naissance : {{demandeur.dateNaissance}}</dd> 
+          <dd>lieu de naissance : {{demandeur.lieuNaissance}}</dd> 
+          <dd>Adresse : {{demandeur.adresse}}</dd> 
+          <dd>numero de telephone  : {{demandeur.telephone}}</dd> 
+          <dd>numero de la piece d'identité : {{demandeur.numeroPieceDidentite}}</dd>  
+
+        </dl>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-flat-button color="primary" [routerLink]="['/demandeur-edit', demandeur.id]"><mat-icon>edit</mat-icon></a>
+        <a mat-flat-button color="warn" (click)="deleteDemandeur(demandeur.id)"><mat-icon>delete</mat-icon></a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
