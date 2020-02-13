@@ -32,12 +32,12 @@ export class MyApiService {
    }
    addDemandeur(demandeur: Demandeur): Observable<Demandeur> {
      return this.http.post<Demandeur>(UrlApi, demandeur, httpOptions).pipe(
-       tap((deman: Demandeur) => console.log(`demandeur ajouté w/ id=${demandeur._id}`)),
+       tap((deman: Demandeur) => console.log(`demandeur ajouté w/ id=${demandeur.id}`)),
        catchError(this.handleError<Demandeur>('addDemandeur'))
      );
    }
 
-   updateDemandeur(id: any, demandeur: Demandeur): Observable<any> {
+   updateDemandeur(id:number , demandeur): Observable<any> {
      const url = `${UrlApi}/${id}`;
      return this.http.put(url, demandeur, httpOptions).pipe(
        tap(_ => console.log(`demandeur modifié id=${id}`)),

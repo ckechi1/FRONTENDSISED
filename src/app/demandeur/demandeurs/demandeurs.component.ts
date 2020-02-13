@@ -6,8 +6,9 @@ import { Demandeur} from '../demandeur';
   selector: 'app-demandeurs',
   templateUrl: './demandeurs.component.html',
   styleUrls: ['./demandeurs.component.scss']
-})
-export class DemandeursComponent implements OnInit {
+}) 
+  
+export class DemandeursComponent implements OnInit { 
 
   displayedColumns: string[] = ['_id','nom', 'prenom','genre','nationalite', 'dateNaissance','lieuNaissance','adresse','telephone','email','status','numeroPieceDidentite'];
   data: Demandeur[] = [];
@@ -15,7 +16,7 @@ export class DemandeursComponent implements OnInit {
 
   constructor(private api : MyApiService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
    this.api.getDemandeurs()
       .subscribe((res: any) => {
         this.data = res;

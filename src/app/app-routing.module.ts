@@ -1,7 +1,7 @@
 import { DemandeursComponent } from './demandeur/demandeurs/demandeurs.component';
 import { DemandeurDetailComponent } from './demandeur/demandeur-detail/demandeur-detail.component';
 import { DemandeurAddComponent } from './demandeur/demandeur-add/demandeur-add.component';
-//import { DemandeurEditComponent } from './demandeur/demandeur-edit/product-edit.component'; 
+import { DemandeurEditComponent } from './demandeur/demandeur-edit/demandeur-edit.component'; 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -21,16 +21,15 @@ const routes: Routes = [
   ] },  
 
 */ 
-   {
-   path:'demandeurs',
+   {path:'demandeurs',
    component:DemandeursComponent,
    data:{title:'List of demandeurs'}
    },
   
    {
-   path:'demandeur-details/:id',
+   path:'demandeur-detail/:id',
    component:DemandeurDetailComponent,
-   data:{title:'demandeur details'}
+   data:{title:'demandeur detail'}
    },  
  
    {
@@ -39,14 +38,13 @@ const routes: Routes = [
    data:{ title:'Add demandeur'}
    }, 
     
-   /*
+   
    {
    path:'demandeur-edit/:id',
    component:DemandeurEditComponent,
    data: {title:'Edit demandeur'}
    },
 
-*/
 
    {
      path:'',

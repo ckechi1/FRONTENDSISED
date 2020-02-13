@@ -1,4 +1,7 @@
 /* Structure */
+table {
+  width: 100%; 
+}  
 .example-container {
   position: relative;
   padding: 5px;
@@ -8,10 +11,6 @@
   position: relative;
   max-height: 400px;
   overflow: auto;
-}
-
-table {
-  width: 100%;
 }
 
 .example-loading-shade {
@@ -64,4 +63,12 @@ table {
 .example-large-box {
   height: 300px;
   width: 300px;
+}  
+ 
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
 }

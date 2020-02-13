@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DemandeurDetailComponent implements OnInit {
   
-  demandeur : Demandeur ={_id:null,nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:'',lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ; 
+  demandeur : Demandeur ={id:null,nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:'',lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ; 
   isLoadingResults=true;
 
   constructor(private route:ActivatedRoute,private api : MyApiService , private router : Router) { }

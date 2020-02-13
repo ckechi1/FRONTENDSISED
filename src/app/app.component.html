@@ -1,68 +1,25 @@
-<!-- 
+
+<mat-toolbar color="primary" class="header">    
+  <button mat-button routerLink="/demandeurs"><mat-icon>home</mat-icon></button>
+  <!-- <div><h2><b>SYSTEME INTEGRE DE SUIVI DES EQUIVALENCE DES DIPLOMES</b></h2></div>  -->
+    <span class="nav-tool-items" >
+      <a mat-button routerLink="login" routerLinkActive="active" >Connexion</a>
+      <a mat-button mat-raised-button routerLink="logout" routerLinkActive="active">créer utilisateur </a>
+    </span>  
+     
+  </mat-toolbar>  
+
+
+  <!-- Main content -->
+<app-sidenav></app-sidenav>  
    
-<mat-toolbar color="primary" class="app-header"> 
-    <div><h2>SISED</h2></div>
-    <span class="nav-tool-items">
-      <a mat-button routerLink="login" routerLinkActive="active" >Connexion</a>
-      <a mat-button mat-raised-button routerLink="logout" routerLinkActive="active">créer utilisateur </a>
-    </span>
-  </mat-toolbar> Toolbar --> 
-
-<mat-toolbar color="primary" class="header">
-    <div><h2>SISED</h2></div>
-    <span class="nav-tool-items">
-      <mat-icon (click)="sidenav.toggle()" class="hamburger"></mat-icon> 
-      <a mat-button routerLink="login" routerLinkActive="active" >Connexion</a>
-      <a mat-button mat-raised-button routerLink="logout" routerLinkActive="active">créer utilisateur </a>
-    </span>
-  </mat-toolbar> 
-
-<mat-sidenav-container>
-    <!-- Sidenav -->
-    <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="false"
-      [fixedTopGap]>
-      <mat-nav-list>
-        <a mat-list-item > 
-            <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
-            <mat-icon>logout</mat-icon> Deconnexion
-        </a>
-        <a mat-list-item [routerLink]="['/demandeur-add']">
-          <mat-icon>library_add</mat-icon> Ajouter une demande
-        </a>
-        <a mat-list-item [routerLink]="['/demandeurs']">
-          <mat-icon>content_paste</mat-icon> Les demandes
-        </a>
-        <a mat-list-item [routerLink]="['/etat-demandeurs']">
-          <mat-icon>library_books</mat-icon> Etat de la demande
-        </a> 
-        <a mat-list-item [routerLink]="['/Historique-demande']">
-          <mat-icon>timeline</mat-icon> Historique des demandes
-        </a> 
-        <a mat-list-item [routerLink]="['/demande-acceptee']">
-          <mat-icon>assignment_turned_in </mat-icon> Demande Acceptée
-        </a> 
-        <a mat-list-item [routerLink]="['/demande-rejeter']">
-          <mat-icon>event_busy</mat-icon> Demande Rejetée
-        </a>
-        <a mat-list-item>
-          <mat-icon>info_outline</mat-icon> A propos
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-  
-    <!-- Main content -->
-    <mat-sidenav-content>
-
-  
- <div class="container">
- <router-outlet> 
-
-  </router-outlet> 
-  </div>   
 
  
-    </mat-sidenav-content>  
+ <mat-toolbar color="primary" class="footer" fxLayoutAlign="center center"> 
 
-  </mat-sidenav-container>
+<div><h6><i> Systeme Intégré de suivi des Equivalences Des Diplomes Tout droit reservé @CAISFF </i></h6></div>
+  
+</mat-toolbar>   
 
 
+  

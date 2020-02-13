@@ -21,7 +21,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class DemandeurAddComponent implements OnInit { 
   
-  formulaireDemandeur :FormGroup; 
+  formulaireDemandeur :FormGroup;  
+  //firstFormGroup : FormGroup;
   nom =''; 
   prenom=''; 
   genre=''; 

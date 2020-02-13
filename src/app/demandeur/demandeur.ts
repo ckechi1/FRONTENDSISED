@@ -1,5 +1,5 @@
 export class Demandeur {
-        _id:number;
+        id:number;
         nom:string;
         prenom:string;
         genre:string;

@@ -8,85 +8,85 @@
 
       <!--  _id du  demandeur  -->
       <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef>id du demandeur </th>
+        <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let row">{{row.id}}</td>
       </ng-container>
 
       <!--  nom demandeur  -->
       <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef >nom du demandeur </th>
+        <th mat-header-cell *matHeaderCellDef > NOM </th>
         <td mat-cell *matCellDef="let row">{{row.nom}}</td>
       </ng-container>
 
       <!-- prenom du demandeur  -->
       <ng-container matColumnDef="prenom">
-        <th mat-header-cell *matHeaderCellDef>prenom du demandeur </th>
+        <th mat-header-cell *matHeaderCellDef> PRENOM </th>
         <td mat-cell *matCellDef="let row">{{row.prenom}}</td>
       </ng-container>
 
       <!-- genre du demandeur  -->
       <ng-container matColumnDef="genre">
-        <th mat-header-cell *matHeaderCellDef>genre du demandeur </th>
+        <th mat-header-cell *matHeaderCellDef> GENRE </th>
         <td mat-cell *matCellDef="let row">{{row.genre}}</td>
       </ng-container>
 
       <!-- nationalite du demandeur  -->
       <ng-container matColumnDef="nationalite">
-        <th mat-header-cell *matHeaderCellDef>nationalite</th>
+        <th mat-header-cell *matHeaderCellDef> NATIONALITE </th>
         <td mat-cell *matCellDef="let row">{{row.nationalite}}</td>
       </ng-container>
 
       <!-- dateNaissance du demandeur -->
       <ng-container matColumnDef="dateNaissance">
-        <th mat-header-cell *matHeaderCellDef >date de naissance </th>
+        <th mat-header-cell *matHeaderCellDef >DATE DE NAISSANCE</th>
         <td mat-cell *matCellDef="let row">{{row.dateNaissance}}</td>
       </ng-container>
 
       <!-- lieuNaissance du demandeur  -->
       <ng-container matColumnDef="lieuNaissance">
-        <th mat-header-cell *matHeaderCellDef>lieuNaissance</th>
+        <th mat-header-cell *matHeaderCellDef>LIEU DE NAISSANCE</th>
         <td mat-cell *matCellDef="let row">{{row.lieuNaissance}}</td>
       </ng-container>
 
       <!-- adresse du demandeur  -->
       <ng-container matColumnDef="adresse">
-        <th mat-header-cell *matHeaderCellDef>adresse </th>
+        <th mat-header-cell *matHeaderCellDef> ADRESSE </th>
         <td mat-cell *matCellDef="let row">{{row.adresse}}</td>
       </ng-container>
 
       <!-- telephone du demandeur  -->
       <ng-container matColumnDef="telephone">
-        <th mat-header-cell *matHeaderCellDef>telephone</th>
+        <th mat-header-cell *matHeaderCellDef> TELEPHONE </th>
         <td mat-cell *matCellDef="let row">{{row.telephone}}</td>
       </ng-container>
 
       <!-- email du demandeur  -->
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> adresse email </th>
+        <th mat-header-cell *matHeaderCellDef> EMAIL </th>
         <td mat-cell *matCellDef="let row">{{row.email}}</td>
       </ng-container>
 
       <!-- status du demandeur  -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>status</th>
+        <th mat-header-cell *matHeaderCellDef> STATUS </th>
         <td mat-cell *matCellDef="let row">{{row.status}}</td>
       </ng-container>
 
       <!-- numeroPieceDidentite du demandeur -->
-      <ng-container matColumnDef="numeroPieceDidentite">
-        <th mat-header-cell *matHeaderCellDef>numeroPieceDidentite</th>
+      <ng-container matColumnDef="numeroPieceDidentite" >
+        <th mat-header-cell *matHeaderCellDef>NºPIECE DIDENTITE</th>
         <td mat-cell *matCellDef="let row">{{row.numeroPieceDidentite}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/demandeur-details/', row.id]"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/demandeur-detail/', row.id]"></tr>
     </table>
   </div>
 </div>
  
 <!-- group slider ---> 
-<mat-tab-group dynamicHeight>
-    <mat-tab label="Diplome">
+<mat-tab-group dynamicHeight animationDuration="2000ms">
+    <mat-tab label="Formation">
       <div class="example-large-box mat-elevation-z4">
         Small content
       </div>
