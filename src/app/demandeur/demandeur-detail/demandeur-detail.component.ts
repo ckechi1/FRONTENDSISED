@@ -13,7 +13,7 @@ export class DemandeurDetailComponent implements OnInit {
   demandeur : Demandeur ={id:null,nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:'',lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ; 
   isLoadingResults=true;
 
-  constructor(private route:ActivatedRoute,private api : MyApiService , private router : Router) { }
+  constructor(private route:ActivatedRoute ,private api : MyApiService , private router : Router) { }
 
   ngOnInit() { 
      
@@ -28,7 +28,8 @@ export class DemandeurDetailComponent implements OnInit {
         console.log(this.demandeur);
         this.isLoadingResults = false;
       });
-  } 
+  }  
+  
   deleteDemandeur(id: any) {
     this.isLoadingResults = true;
     this.api.deleteDemandeur(id)

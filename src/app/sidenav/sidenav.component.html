@@ -1,46 +1,45 @@
- <mat-sidenav-container> 
+ <mat-sidenav-container>
     <!-- Sidenav -->
     <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="True"
-      [fixedTopGap]> 
+      [fixedTopGap]>
       <mat-nav-list>
-        <a mat-list-item > 
+        <a mat-list-item >
             <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
             <mat-icon>logout</mat-icon>Deconnexion
         </a>
         <a mat-list-item [routerLink]="['/demandeur-add']">
-          <mat-icon>library_add</mat-icon> Ajouter une demande
+          <mat-icon>library_add</mat-icon> Ajouter un demandeur
         </a>
         <a mat-list-item [routerLink]="['/demandeurs']">
           <mat-icon>content_paste</mat-icon> Les demandes
         </a>
         <a mat-list-item [routerLink]="['/etat-demandeurs']">
           <mat-icon>library_books</mat-icon> Etat de la demande
-        </a> 
+        </a>
         <a mat-list-item [routerLink]="['/Historique-demande']">
           <mat-icon>timeline</mat-icon> Historique des demandes
-        </a> 
+        </a>
         <a mat-list-item [routerLink]="['/demande-acceptee']">
           <mat-icon>assignment_turned_in </mat-icon> Demande Acceptée
-        </a> 
+        </a>
         <a mat-list-item [routerLink]="['/demande-rejeter']">
           <mat-icon>event_busy</mat-icon> Demande Rejetée
         </a>
         <a mat-list-item>
           <mat-icon>info_outline</mat-icon> A propos
-        </a>       
+        </a>
       </mat-nav-list>
     </mat-sidenav>
 
   <mat-sidenav-content>
 
           <div class="container">
-           <router-outlet> 
-        
-           </router-outlet> 
-         </div> 
-    
-      </mat-sidenav-content>   
+           <router-outlet>
+
+           </router-outlet>
+         </div>
+
+      </mat-sidenav-content>
 
 </mat-sidenav-container>
 
-        

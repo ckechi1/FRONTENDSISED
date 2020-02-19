@@ -1,93 +1,110 @@
-<div class="example-container mat-elevation-z8">
     <div class="example-loading-shade"
-         *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+         *ngIf="isloadingResults">
+      <mat-spinner *ngIf="isloadingResults"></mat-spinner>
     </div>
     <div class="button-row">
       <a mat-flat-button color="primary" (click)="demandeurDetails()"><mat-icon>keyboard_backspace</mat-icon></a>
     </div>
     <mat-card class="example-card">
       <form [formGroup]="formulaireDemandeur" (ngSubmit)="onFormSubmit(formulaireDemandeur.value)">
+
+        <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+            <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Nom du demandeur" formControlName="nom"
-                   [errorStateMatcher]="matcher">
+            <input matInput placeholder="Nom du demandeur" formControlName="nom">
             <mat-error>
               <span *ngIf="!formulaireDemandeur.get('nom').valid && formulaireDemandeur.get('nom').touched">entrer le nom du produit</span>
             </mat-error>
           </mat-form-field>
+
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="prenom du demandeur" formControlName="prenom"
-                   [errorStateMatcher]="matcher">
+            <input matInput placeholder="prenom du demandeur" formControlName="prenom">
             <mat-error>
               <span *ngIf="!formulaireDemandeur.get('prenom').valid && formulaireDemandeur.get('prenom').touched">entrer le  prenom</span>
             </mat-error>
           </mat-form-field>
+
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="genre" formControlName="genre"
-                   [errorStateMatcher]="matcher">
+            <input matInput placeholder="genre" formControlName="genre">
             <mat-error>
               <span *ngIf="!formulaireDemandeur.get('genre').valid && formulaireDemandeur.get('genre').touched">entrer le genre</span>
             </mat-error>
-          </mat-form-field> 
+          </mat-form-field>
+
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="nationalité du demandeur" formControlName="nationalite"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="nationalité du demandeur" formControlName="nationalite">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('nationalite').valid && formulaireDemandeur.get('nationalite').touched">entrer la nationalié</span>
               </mat-error>
-            </mat-form-field> 
+         </mat-form-field>
+
+            </div>
+           </div>
+        <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+        <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="date de Naissance" formControlName="dateNaissance"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="date de Naissance" formControlName="dateNaissance">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('dateNaissance').valid && formulaireDemandeur.get('dateNaissance').touched">entrer la date de naissance</span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="lieu de Naissance" formControlName="lieuNaissance"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="lieu de Naissance" formControlName="lieuNaissance">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('lieuNaissance').valid && formulaireDemandeur.get('lieuNaissance').touched">entrer lieu de naissance</span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="l'adresse" formControlName="adresse"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="l'adresse" formControlName="adresse">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('adresse').valid && formulaireDemandeur.get('adresse').touched">entrer l'adresse </span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder=" le telephone" formControlName="telephone"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder=" le telephone" formControlName="telephone">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('telephone').valid && formulaireDemandeur.get('telephone').touched">entrer l'email </span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
+               </div>
+             </div>
+            <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+            <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="email" formControlName="email"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="email" formControlName="email">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('email').valid && formulaireDemandeur.get('email').touched">entrer l'email </span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="status" formControlName="status"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="status" formControlName="status">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('status').valid && formulaireDemandeur.get('status').touched">entrer le status</span>
               </mat-error>
-            </mat-form-field> 
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="numero de la Piece D'identite" formControlName="numeroPieceDidentite"
-                     [errorStateMatcher]="matcher">
+              <input matInput placeholder="numero de la Piece D'identite" formControlName="numeroPieceDidentite">
               <mat-error>
                 <span *ngIf="!formulaireDemandeur.get('numeroPieceDidentite').valid && formulaireDemandeur.get('numeroPieceDidentite').touched">entrer le numero piece d'identité </span>
               </mat-error>
             </mat-form-field>
+
+        </div>
+    </div>
+
         <div class="button-row">
           <button type="submit" [disabled]="!formulaireDemandeur.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
         </div>
       </form>
     </mat-card>
-  </div>
+
+  <!-- group slider --->

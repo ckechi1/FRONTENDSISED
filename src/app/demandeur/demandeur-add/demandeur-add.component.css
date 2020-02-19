@@ -17,14 +17,6 @@
   .example-full-width:nth-last-child(0) {
     margin-bottom: 10px;
   }
-  
-  .button-row {
-    margin: 10px 0;
-  }
-  
-  .mat-flat-button {
-    margin: 5px;
-  }  
    
    */
  
@@ -42,5 +34,4 @@
 
 .mat-form-field--inline .mat-form-field:nth-child(1) {
     margin-right: 10px;
-}
-    
+} 

@@ -1,9 +1,9 @@
-/* Structure */
+/* Structure*/
 .example-container {
     position: relative;
     padding: 10px;
   }
-  
+
   .example-loading-shade {
     position: absolute;
     top: 0;
@@ -16,7 +16,13 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .mat-flat-button {
-    margin: 5px;
+    margin: 2px;
   }
+
+.card-content{
+   justify-content: flex-end;
+}
+
+

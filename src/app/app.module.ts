@@ -23,7 +23,7 @@ import { HttpInterceptorService } from './login/http-interceptor-service.service
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
-
+import { FormationComponent } from './formation/formation/formation/formation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,7 @@ import { FormationAddComponent } from './formation/formation-add/formation-add.c
     DemandeurDetailComponent,
     DemandeurEditComponent,
     LogoutComponent,  
-    LoginComponent, SidenavComponent, FormationAddComponent
+    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent
   ],
   imports: [ 
     FlexLayoutModule,

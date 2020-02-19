@@ -1,4 +1,27 @@
-/* Structure */
+
+  
+  .mat-flat-button {
+    margin: 5px;
+  } 
+   
+
+  .mat-form-field--inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+    display: inline-block; 
+    width: 20%;
+    vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+    margin-right: 10px;
+} 
+ 
+/* Structure 
 .example-container {
     position: relative;
     padding: 5px;
@@ -20,8 +43,6 @@
   
   .button-row {
     margin: 10px 0;
-  }
-  
-  .mat-flat-button {
-    margin: 5px;
-  }
+  } 
+   
+  */
