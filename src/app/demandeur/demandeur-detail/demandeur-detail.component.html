@@ -1,61 +1,83 @@
+ <!-- <div button-size >
+</div> -->
+
 <div class="widgets-row"
  fxLayout
  fxLayout.xs="column"
- fxLayoutAlign="center"
+ fxLayoutAlign="start"
  fxLayoutWrap="wrap"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-<div class="widget" fxFlex="100%">
+ fxLayoutGap="10px"
+ fxLayoutGap.xs="0">
 
-<div class="example-loading-shade"
-         *ngIf="isLoadingResults">
+<div class="widget" fxFlex="50%">
+  <div class="example-loading-shade"*ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
-    <mat-card class="example-card">
-       <!-- <div class="button-row">
-      <a mat-flat-button color="primary" [routerLink]="['/demandeurs']"><mat-icon>keyboard_backspace</mat-icon></a>
-    </div> -->
-    <mat-card-actions >
-      <a mat-flat-button color="primary" [routerLink]="['/demandeurs']"><mat-icon>keyboard_backspace</mat-icon></a>
-    </mat-card-actions>
+    <mat-card class="example-card" class="example-card">
+<mat-card-actions fxFlex="0.5%" fxFlexAlign="end"
+ fxLayoutWrap="wrap" fxLayoutGap="3px" fxLayoutGap.xs="0">
+      <a mat-stroked-button mdl-js-ripple-effect color="primary"  (click)="GoToDemandeurEdit(demandeur.id)"><mat-icon>edit</mat-icon></a>
+      </mat-card-actions>
+    <div fxLayoutAlign="start" fxFlex="18%"><a><img src="assets/img/detail_user2.png"> </a>
+    </div>
 
       <mat-card-header>
-        <mat-card-title ><h2>{{demandeur.nom}}</h2></mat-card-title>
-        <mat-card-title><h3>{{demandeur.prenom}}</h3></mat-card-title>
-        <mat-card-subtitle><h4>{{demandeur.email}}</h4></mat-card-subtitle>
+        <mat-card-title >{{demandeur.nom}}</mat-card-title>
+        <mat-card-title>{{demandeur.prenom}}</mat-card-title>
+        <mat-card-subtitle>{{demandeur.nationalite}}</mat-card-subtitle>
+        <mat-card-subtitle>{{demandeur.email}}</mat-card-subtitle>
+        <mat-card-subtitle>{{demandeur.telephone}}</mat-card-subtitle>
+        <mat-card-subtitle><Address>{{demandeur.adresse}}</Address></mat-card-subtitle>
       </mat-card-header>
-      <div fxLayoutAlign="center" fxFlex="50%">
-        <a>  <img src="assets/img/user_img.jpg"> </a>
-      </div>
-      <mat-card-content fxLayout  fxLayoutAlign="end"  fxLayoutWrap="wrap" fxLayoutGap="10px"
-      fxLayoutGap.xs="0" fxFlex="50%" >
+
+      <mat-card-content fxLayout fxLayoutAlign="end"
+      fxLayoutWrap="wrap" fxLayoutGap="10px"
+      fxLayoutGap.xs="0" fxFlex="50%">
         <dl>
-          <dt><h3> Autre information : </h3></dt>
-          <dd>genre : {{demandeur.genre}}</dd>
-          <dd>nationalité : {{demandeur.nationalite}}</dd>
-          <dd>date de naissance : {{demandeur.dateNaissance}}</dd>
-          <dd>lieu de naissance : {{demandeur.lieuNaissance}}</dd>
-          <dd>Adresse : {{demandeur.adresse}}</dd>
-          <dd>numero de telephone  : {{demandeur.telephone}}</dd>
-          <dd>numero de la piece d'identité : {{demandeur.numeroPieceDidentite}}</dd>
+          <dd>genre <mat-card-subtitle>{{demandeur.genre}}</mat-card-subtitle></dd>
+          <dd>date de naissance <mat-card-subtitle>{{demandeur.dateNaissance}}</mat-card-subtitle></dd>
+          <dd>lieu de naissance <mat-card-subtitle>{{demandeur.lieuNaissance}}</mat-card-subtitle></dd>
+          <dd>numero de la piece d'identité <mat-card-subtitle>{{demandeur.numeroPieceDidentite}}</mat-card-subtitle></dd>
         </dl>
       </mat-card-content>
-      <mat-card-actions >
-        <a mat-flat-button color="primary" [routerLink]="['/demandeur-edit', demandeur.id]"><mat-icon>edit</mat-icon></a>
-        <a mat-flat-button color="warn" (click)="deleteDemandeur(demandeur.id)"><mat-icon>delete</mat-icon></a>
-      </mat-card-actions>
+
     </mat-card>
 
     </div>
+
+  <div fxFlex="50%" class="widget">
+ <mat-card class="example-card" class="example-card">
+
+        <mat-card-header>
+          <mat-card-title >{{demandeur.nom}}</mat-card-title>
+          <mat-card-title>{{demandeur.prenom}}</mat-card-title>
+          <mat-card-subtitle>{{demandeur.nationalite}}</mat-card-subtitle>
+          <mat-card-subtitle>{{demandeur.email}}</mat-card-subtitle>
+          <mat-card-subtitle>{{demandeur.telephone}}</mat-card-subtitle>
+          <mat-card-subtitle><Address>{{demandeur.adresse}}</Address></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content fxLayout  fxLayoutAlign="end"
+        fxLayoutWrap="wrap" fxLayoutGap="10px"
+        fxLayoutGap.xs="0" fxFlex="50%" >
+          <dl>
+            <dd>genre <mat-card-subtitle>{{demandeur.genre}}</mat-card-subtitle></dd>
+            <dd>date de naissance <mat-card-subtitle>{{demandeur.dateNaissance}}</mat-card-subtitle></dd>
+            <dd>lieu de naissance <mat-card-subtitle>{{demandeur.lieuNaissance}}</mat-card-subtitle></dd>
+            <dd>numero de la piece d'identité <mat-card-subtitle>{{demandeur.numeroPieceDidentite}}</mat-card-subtitle></dd>
+          </dl>
+        </mat-card-content>
+      </mat-card>
   </div>
+  </div>
+
 
   <div fxLayout
   fxLayout.xs="column"
   fxLayoutAlign="space-between"
   fxLayoutWrap="wrap">
   <div fxFlex="100%" class="widget">
-
-  <mat-tab-group dynamicHeight animationDuration="2000ms" >
+  <mat-tab-group dynamicHeight animationDuration="1000ms"
+   color="primary" mat-align-tabs="start" >
     <mat-tab label="Formation">
       <div class="example-large-box mat-elevation-z4">
         <app-formation></app-formation>
@@ -63,8 +85,8 @@
     </mat-tab>
     <mat-tab label="Demande d'equivalence ">
       <div class="example-large-box mat-elevation-z4">
-        Large content
-      </div>
+        <app-demande-equivalence></app-demande-equivalence>
+       </div>
     </mat-tab>
     <mat-tab label="status de la demande">
       <div class="example-large-box mat-elevation-z4">

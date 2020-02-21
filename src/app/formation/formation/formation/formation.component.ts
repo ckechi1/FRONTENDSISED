@@ -30,10 +30,14 @@ export class FormationComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
 
-   let id = this.route.params['id'];
-    console.log(id)
     this.dataSource = new FormationDataSource();
-      this.api.getFormations(id)
+    this.getFormationbyDemandeurId();
+
+  }
+  getFormationbyDemandeurId(){
+         const id = +this.route.snapshot.paramMap.get('id');
+          console.log(id)
+         this.api.getFormations(id)
          .subscribe((res: any) => {
            this.data = res;
            console.log(this.data);

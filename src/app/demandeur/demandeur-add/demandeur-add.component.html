@@ -93,125 +93,109 @@
   </div> -->
    <!-- group stepper -->
 
-  <form [formGroup]="formulaireDemandeur" (ngSubmit)="surFormValider(formulaireDemandeur.value)" >
-  <mat-horizontal-stepper  #stepper formArrayName="formArray" >
+  <form class="example-form" [formGroup]="formulaireDemandeur"
+    (ngSubmit)="surFormValider()"
+     fxLayoutWrap="wrap"
+     fxFlex="100%">
 
-      <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
-          <ng-template matStepLabel>Information du demandeur</ng-template>
+    <div class="mat-form-field--inline">
 
-          <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-          <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
-
-          <mat-form-field >
+         <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>nom</mat-label>
             <input matInput placeholder="Nom du demandeur" formControlName="nom" required>
             <mat-error>entrer le nom </mat-error>
           </mat-form-field>
 
-        <mat-form-field >
+         <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>prenom</mat-label>
           <input matInput placeholder="prenom du demandeur" formControlName="prenom" required >
           <mat-error>entrer le prenom </mat-error>
-        </mat-form-field>
+         </mat-form-field>
 
-        <mat-form-field >
-          <mat-label>genre</mat-label>
-            <select matNativeControl required formControlName="genre">
-              <option value="Feminin">Feminin</option>
-              <option value="Masculin">Masculin</option>
-            </select>
-         <mat-error>entrer le genre </mat-error>
-        </mat-form-field>
+         <mat-form-field appearance="outline" >
+           <mat-label>genre</mat-label>
+             <mat-select  required formControlName="genre">
+              <mat-option value="Feminin">Feminin</mat-option>
+              <mat-option value="Masculin">Masculin</mat-option>
+             </mat-select>
+          <mat-error>entrer le genre </mat-error>
+         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+    </div>
+
+     <div class="mat-form-field--inline" >
+
+         <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nationalité</mat-label>
             <input matInput placeholder="nationalité du demandeur" formControlName="nationalite">
             <mat-error>entrer la nationalité </mat-error>
           </mat-form-field>
 
-        </div>
-      </div>
-    <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-    <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
-
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline" >
             <mat-label>status</mat-label>
-            <select matNativeControl required formControlName="status">
-              <option value="stagiaire">stagiaire</option>
-              <option value="fonctionnaire">fonctionnaire</option>
-            </select>
+             <mat-select  formControlName="status" required>
+              <mat-option value="stagiaire">stagiaire</mat-option>
+              <mat-option value="fonctionnaire">fonctionnaire</mat-option>
+            </mat-select>
             <mat-error>entrer le status </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>numéro de la Piece D'identite</mat-label>
             <input matInput placeholder="numero de la Piece D'identite" formControlName="numeroPieceDidentite">
             <mat-error>entrer le numero de la piece d'identité </mat-error>
           </mat-form-field>
 
-              </div>
-            </div>
-            <div>
-              <button  mat-raised-button color="primary" matStepperNext type="button">Suivant</button>
-            </div>
+     </div>
 
-         </mat-step>
-         <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
-          <ng-template matStepLabel>Autre information</ng-template>
+     <div class="mat-form-field--inline">
 
-          <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-          <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
-
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput placeholder="date de Naissance" formControlName="dateNaissance" [matDatepicker]="picker">
-            <mat-label>Choisir une date</mat-label>
+            <mat-label>Choisir une date de naissance</mat-label>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error>entrer la date de naissance </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>lieu de Naissance</mat-label>
             <input matInput placeholder="lieu de Naissance" formControlName="lieuNaissance">
             <mat-error>entrer le lieu de naissance </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>l'adresse</mat-label>
             <input matInput placeholder="l'adresse" formControlName="adresse">
             <mat-error>entrer l'adresse </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+      </div>
+
+     <div class="mat-form-field--inline">
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>numéro de telephone</mat-label>
             <input matInput placeholder=" le telephone" formControlName="telephone">
           </mat-form-field>
 
-        </div>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-      <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
-
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>l'email</mat-label>
             <input matInput placeholder="email" formControlName="email">
           </mat-form-field>
 
-             </div>
-          </div>
-          <div>
-            <button mat-button  color="accent" matStepperPrevious>Retour</button>
-            <button mat-raised-button  color="primary" matStepperNext type="button" >Suivant</button>
-          </div>
+     </div>
+  <!--
+      <div>
+      <button mat-raised-button color="primary"
+      type="submit"
+      [disabled]="!formulaireDemandeur.valid"
+      [routerLink]="['/demandeurs']">
+      Valider
+      </button>
+    </div>
+   -->
+   <button mat-raised-button color="primary" type="submit">valider </button>
 
-      </mat-step>
-
-      <mat-step>
-        <ng-template matStepLabel>fin</ng-template>
-        vous avez fini.
-
-        <div>
-          <button mat-button color="accent" matStepperPrevious >Retour</button>
-          <button mat-button color="warn" (click)="stepper.reset()">Reprendre</button>
-          <button mat-raised-button color="primary" matStepperNext >Valider</button>
-        </div>
-
-      </mat-step>
-</mat-horizontal-stepper>
 </form>
-
-
-
 

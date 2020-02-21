@@ -6,9 +6,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import {SidenavComponent} from './sidenav/sidenav.component';
-import {FormationAddComponent} from './formation/formation-add/formation-add.component';
-import {FormationComponent} from './formation/formation/formation/formation.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { FormationAddComponent } from './formation/formation-add/formation-add.component';
+import { FormationComponent } from './formation/formation/formation/formation.component';
+import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component'
+
 const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
@@ -25,11 +27,11 @@ const routes: Routes = [
 */
       /* --- Demandeurs routers ---  */
 
+   {path:'demandeur-add',component:DemandeurAddComponent,data:{ title:'Add demandeur'}},
+
    {path:'demandeurs',component:DemandeursComponent,data:{title:'List of demandeurs'}},
 
    {path:'demandeur-detail/:id',component:DemandeurDetailComponent,data:{title:'demandeur detail'}},
-
-   {path:'demandeur-add',component:DemandeurAddComponent,data:{ title:'Add demandeur'}},
 
    {path:'demandeur-edit/:id',component:DemandeurEditComponent,data: {title:'Edit demandeur'}},
 
@@ -38,9 +40,11 @@ const routes: Routes = [
    {path :'formation-add ', component:FormationAddComponent , data:{title:'Add formation '}},
    {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
 
+    /* --- Demande equivalence routers --- */
+
+    {path :'demandeEquivalence',component:DemandeEquivalenceComponent,data:{title:'List of demandeEquivalence'}},
 
    /* --- default route --- */
-
    {path:'',redirectTo:'/demandeurs',pathMatch:'full'}
 
 

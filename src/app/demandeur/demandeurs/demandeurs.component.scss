@@ -1,10 +1,8 @@
-/* Structure */ 
+/*
 
 .gray { background-color: #f5f5f5 }
 
-table {
-  width: 100%; 
-}  
+
 .example-container {
   position: relative;
   padding: 5px;
@@ -33,6 +31,10 @@ table {
   color: #745252;
   max-width: 360px;
   text-align: center;
+}*/
+
+table {
+  width: 100%;
 }
 
 /* Column Widths */
@@ -48,7 +50,7 @@ table {
 .mat-flat-button {
   margin: 10px;
 }
- 
+
 .example-small-box, .example-large-box {
   display: flex;
   align-items: center;
@@ -66,8 +68,8 @@ table {
 .example-large-box {
   height: 300px;
   width: 300px;
-}  
- 
+}
+
 .mat-row {
   height: auto;
 }
@@ -75,3 +77,4 @@ table {
 .mat-cell {
   padding: 8px 8px 8px 0;
 }
+

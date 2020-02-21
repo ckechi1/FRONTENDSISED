@@ -1,0 +1,100 @@
+<div fxLayout fxLayoutAlign="start"  fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+    <input matInput type="text"  placeholder="Date de dépot">
+  </mat-form-field>
+  <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Numéro recepissé">
+  </mat-form-field>
+  <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Numéro bordereau">
+  </mat-form-field>
+  <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Diplome antérieur">
+  </mat-form-field>
+  <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Diplome demandé">
+  </mat-form-field>
+
+  <div fxFlex="5%">
+      <button  class="button-size" matSuffix mat-flat-button color="primary"><mat-icon>add</mat-icon></button>
+  </div>
+  <div fxFlex="0%" fxLayoutAlign="end">
+  <mat-form-field class="input-headline" appearance="outline">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Effectuer une reherche">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table  class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="dateDepot">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de dépot</th>
+      <td mat-cell *matCellDef="let row">{{row.dateDepot}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroRecepisse">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>numéro de recepissé</th>
+      <td mat-cell *matCellDef="let row">{{row.numeroRecepisse}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="numeroBordereau">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>numéro de bordereau</th>
+      <td mat-cell *matCellDef="let row">{{row.numeroBordereau}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="diplomeAnterieur">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>diplome anterieur</th>
+      <td mat-cell *matCellDef="let row">{{row.diplomeAnterieur}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="diplomeDemande">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> diplome demandé</th>
+      <td mat-cell *matCellDef="let row">{{row.diplomeDemande}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Detail</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" >
+            <mat-icon class="mat-18">reorder</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>Modifier</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="accent" >
+              <mat-icon class="mat-18">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Supprimer</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="warn">
+                <mat-icon class="mat-18">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="3"
+      [pageSizeOptions]="[10, 15, 20, 30]">
+  </mat-paginator>
+</div>

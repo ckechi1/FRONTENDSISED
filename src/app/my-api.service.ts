@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Demandeur } from './demandeur/demandeur';
 import { Formation } from './formation/formation';
+import { DemandeEquivalence } from './demandeEquivalence/demandeEquivalence';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,14 +20,14 @@ export class MyApiService {
 
   constructor(private http: HttpClient) { }
 
-  getDemandeurs(): Observable<Demandeur[]>{
+getDemandeurs(): Observable<Demandeur[]>{
      return this.http.get<Demandeur[]>(UrlApi)
-     .pipe(tap(Demandeur =>console.log('demandeurs retourné')),
+     .pipe(tap(_ =>console.log('demandeurs retourné')),
      catchError(this.handleError('getDemandeurs',[]))
      );
   }
 
-  getDemandeur(id:number):Observable<Demandeur>{
+getDemandeur(id:number):Observable<Demandeur>{
     const url =`${UrlApi}/${id}`;
     return this.http.get<Demandeur>(url).pipe(
    tap(_=>console.log(`demandeur retourné id=${id}`)),
@@ -34,14 +35,14 @@ export class MyApiService {
    );
    }
 
-   addDemandeur(demandeur):Observable<Demandeur> {
+addDemandeur(demandeur : Demandeur):Observable<Demandeur> {
     return this.http.post<Demandeur>(UrlApi, demandeur, httpOptions).pipe(
-      tap((demandeur: Demandeur) => console.log(`added demandeur w/ id=${demandeur.id}`)),
+      tap((newdemandeur : Demandeur) => console.log(`added demandeur w/ id=${newdemandeur.id}`)),
       catchError(this.handleError<Demandeur>('addDemandeur'))
     );
   }
 
-   updateDemandeur(id:number , demandeur): Observable<any> {
+updateDemandeur(id:number , demandeur): Observable<any> {
      const url = `${UrlApi}/${id}`;
      return this.http.put(url, demandeur, httpOptions).pipe(
        tap(_ => console.log(`demandeur modifié id=${id}`)),
@@ -49,7 +50,7 @@ export class MyApiService {
      );
    }
 
-  deleteDemandeur(id: any): Observable<Demandeur> {
+deleteDemandeur(id: any): Observable<Demandeur> {
     const url = `${UrlApi}/${id}`;
     return this.http.delete<Demandeur>(url, httpOptions).pipe(
       tap(_ => console.log(`demandeur supprimé id=${id}`)),
@@ -58,7 +59,7 @@ export class MyApiService {
   }
    /// formation service ///
 
-  addFormation(id:any , formation :Formation){
+addFormation(id:any , formation :Formation){
     id = this.getDemandeur(id);
     console.log(` demandeur retourné = id=${id} `);
     const url = `${UrlApi}/${id}/formation`;
@@ -69,13 +70,21 @@ export class MyApiService {
     );
   }
 
-  getFormations(id:number): Observable<Formation[]>{
+getFormations(id:number): Observable<Formation[]>{
     const url = `${UrlApi}/${id}/formation`;
-    console.log(`probleme id=${id}`);
     return this.http.get<Formation[]>(url)
     .pipe(tap(Formation =>console.log(`formation avec demandeur id=${id}`)),
     catchError(this.handleError('getFormations',[]))
     );
+ }
+
+getDemandeEquivalence(id:number):Observable<DemandeEquivalence[]>{
+   const url = `${UrlApi}/${id}/DemandeEquivalence`;
+   console.log(`demandeEquivalence with id = ${id}`);
+   return this.http.get<DemandeEquivalence[]>(url)
+   .pipe(tap(DemandeEquivalence=>console.log(`demandeEquivalence with id =${id}`)),
+   catchError(this.handleError('getDemandeEquivalence',[]))
+   );
  }
 
 private handleError<T> (operation = 'operation', result?: T) {
@@ -86,6 +95,5 @@ private handleError<T> (operation = 'operation', result?: T) {
     return of(result as T);
   };
 }
-
 
 }

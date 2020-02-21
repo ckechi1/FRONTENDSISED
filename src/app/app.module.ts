@@ -24,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
 import { FormationComponent } from './formation/formation/formation/formation.component';
+import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,10 +32,10 @@ import { FormationComponent } from './formation/formation/formation/formation.co
     DemandeurAddComponent,
     DemandeurDetailComponent,
     DemandeurEditComponent,
-    LogoutComponent,  
-    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent
+    LogoutComponent,
+    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent, DemandeEquivalenceComponent
   ],
-  imports: [ 
+  imports: [
     FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
@@ -55,7 +56,7 @@ import { FormationComponent } from './formation/formation/formation/formation.co
       LayoutModule,
       MatToolbarModule,
       MatSidenavModule,
-      MatListModule, 
+      MatListModule,
       MatBadgeModule,
       MatSidenavModule,
       MatListModule,
@@ -70,9 +71,9 @@ import { FormationComponent } from './formation/formation/formation/formation.co
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
-      MatCardModule, 
-      CommonModule, 
-      MatTabsModule, 
+      MatCardModule,
+      CommonModule,
+      MatTabsModule,
       MatStepperModule
   ],
   providers: [
