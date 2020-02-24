@@ -25,6 +25,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
 import { FormationComponent } from './formation/formation/formation/formation.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component';
+import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquival
     DemandeurDetailComponent,
     DemandeurEditComponent,
     LogoutComponent,
-    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent, DemandeEquivalenceComponent
+    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent, DemandeEquivalenceComponent, DemandeEquivalenceAddComponent
   ],
   imports: [
     FlexLayoutModule,

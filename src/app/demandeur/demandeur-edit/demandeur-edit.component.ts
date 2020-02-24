@@ -28,7 +28,7 @@ export class DemandeurEditComponent implements OnInit {
 
   ngOnInit() {
     this.getDemandeur(this.route.snapshot.params['id']);
-    this.id  = this.route.snapshot.params['id'];
+    //this.id  = this.route.snapshot.params['id'];
     console.log(this.id);
     this.formulaireDemandeur = this.formBuilder.group({
       'nom' : [null, Validators.required],
@@ -50,7 +50,7 @@ export class DemandeurEditComponent implements OnInit {
       this.id = data.id;
       this.formulaireDemandeur.setValue({
         nom : data.nom,
-        prenom : data.nom,
+        prenom : data.prenom,
         genre : data.genre,
         nationalite :data.nationalite,
         dateNaissance : data.dateNaissance,
@@ -63,6 +63,7 @@ export class DemandeurEditComponent implements OnInit {
       })
     })
   }
+
   onFormSubmit(form:NgForm){
     this.isloadingResults = true;
     //console.log(this.id);

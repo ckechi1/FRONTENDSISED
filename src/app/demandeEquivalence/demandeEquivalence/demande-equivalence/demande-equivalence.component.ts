@@ -18,7 +18,7 @@ export class DemandeEquivalenceComponent implements AfterViewInit, OnInit {
   dataSource: DemandeEquivalenceDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns : string[] =  ['id', 'dateDepot','numeroRecepisse', 'numeroBordereau','diplomeAnterieur','diplomeDemande','details','update','delete',];
+  displayedColumns : string[] =  ['id', 'dateDepot','numeroRecepisse', 'numeroBordereau','diplomeAnterieur','diplomeDemande','update','delete',];
   //data: DemandeEquivalence[] = [];
   isLoadingResults = true;
 

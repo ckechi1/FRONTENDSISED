@@ -78,6 +78,8 @@ getFormations(id:number): Observable<Formation[]>{
     );
  }
 
+    /// DemandeEquivalence service ///
+
 getDemandeEquivalence(id:number):Observable<DemandeEquivalence[]>{
    const url = `${UrlApi}/${id}/DemandeEquivalence`;
    console.log(`demandeEquivalence with id = ${id}`);
@@ -86,6 +88,16 @@ getDemandeEquivalence(id:number):Observable<DemandeEquivalence[]>{
    catchError(this.handleError('getDemandeEquivalence',[]))
    );
  }
+addDemandeEquivalence(id:number , demandeEqui:DemandeEquivalence){
+    console.log(` demandeur avec id=${id} `);
+    const url = `${UrlApi}/${id}/DemandeEquivalence`;
+
+    return this.http.post<DemandeEquivalence>(url,demandeEqui,httpOptions)
+      .pipe(tap(_=> console.log(`demandeEquivalence ajouté avec id=${demandeEqui.id}`)),
+      catchError(this.handleError<DemandeEquivalence>('addDemandeEquivalence'))
+    );
+}
+
 
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {

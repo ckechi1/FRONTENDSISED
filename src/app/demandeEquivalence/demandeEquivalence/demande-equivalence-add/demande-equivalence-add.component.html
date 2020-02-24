@@ -1,0 +1,35 @@
+<form [formGroup]="formulaireEquivalenceDemande" novalidate (ngSubmit)="surFormValider()">
+  <div fxLayout fxLayoutAlign="start"  fxLayoutGap="10px" fxLayoutGap.xs="0">
+
+    <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+      <input matInput type="text"  placeholder="Date de dépot" formControlName="dateDepot">
+    </mat-form-field>
+
+    <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+      <input matInput  placeholder="Numéro recepissé" formControlName="numeroRecepisse">
+    </mat-form-field>
+
+    <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+      <input matInput  placeholder="Numéro bordereau" formControlName="numeroBordereau">
+    </mat-form-field>
+
+    <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+      <input matInput  placeholder="Diplome antérieur" formControlName="diplomeAnterieur">
+    </mat-form-field>
+
+    <mat-form-field class="input-headline" appearance="standard" fxFlex="10%" >
+      <input matInput  placeholder="Diplome demandé" formControlName="diplomeDemande">
+    </mat-form-field>
+
+    <div fxFlex="5%">
+        <button  class="button-size" matSuffix mat-flat-button color="primary"><mat-icon>add</mat-icon></button>
+    </div>
+
+    <div fxFlex="0%" fxLayoutAlign="end">
+    <mat-form-field class="input-headline" appearance="outline">
+      <input matInput  (keyup)="doFilter($event.target.value)" placeholder="Effectuer une reherche">
+      <mat-icon matSuffix>search</mat-icon>
+     </mat-form-field>
+     </div>
+  </div>
+</form>

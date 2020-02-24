@@ -9,7 +9,7 @@
       <form [formGroup]="formulaireDemandeur" (ngSubmit)="onFormSubmit(formulaireDemandeur.value)">
 
         <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-            <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutGap="55px" fxLayoutAlign="start center">
 
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Nom du demandeur" formControlName="nom">
@@ -42,7 +42,7 @@
             </div>
            </div>
         <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-        <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+        <div fxLayout="row" fxLayoutGap="55px" fxLayoutAlign="start center">
 
             <mat-form-field class="example-full-width">
               <input matInput placeholder="date de Naissance" formControlName="dateNaissance">
@@ -75,7 +75,7 @@
                </div>
              </div>
             <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
-            <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutGap="55px" fxLayoutAlign="start center">
 
             <mat-form-field class="example-full-width">
               <input matInput placeholder="email" formControlName="email">
@@ -97,10 +97,8 @@
                 <span *ngIf="!formulaireDemandeur.get('numeroPieceDidentite').valid && formulaireDemandeur.get('numeroPieceDidentite').touched">entrer le numero piece d'identité </span>
               </mat-error>
             </mat-form-field>
-
         </div>
     </div>
-
         <div class="button-row">
           <button type="submit" [disabled]="!formulaireDemandeur.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
         </div>

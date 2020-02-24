@@ -17,9 +17,3 @@
 }
 */
 
-.button-size {
-  position:absolute;
-  transition: .5s ease;
-  top: 5%;
-  left: 55%;
-}
