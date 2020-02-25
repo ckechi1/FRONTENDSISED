@@ -25,7 +25,7 @@ constructor(private route: ActivatedRoute,private router: Router, private api: M
   }
 
   ngOnInit() {
-     this.id = this.route.snapshot.paramMap.get('id');
+    this.thatonScreengetId();
     this.formulaireEquivalenceDemande = this.formBuilder.group({
     dateDepot: [null, Validators.required],
     numeroRecepisse: [null, Validators.required],
@@ -36,11 +36,14 @@ constructor(private route: ActivatedRoute,private router: Router, private api: M
 
   }
 
+ thatonScreengetId(){
+  const id = +this.route.snapshot.paramMap.get('id');
+ }
 
-  surFormValider(id:number) {
+  surFormValider(id:any) {
     this.isloadingResults = true;
-    console.log(`id du demandeur est ${this.id}`)
-    this.api.addDemandeEquivalence(this.id , this.formulaireEquivalenceDemande.value)
+    console.log(`id du demandeur est ${id}`)
+    this.api.addDemandeEquivalence(id , this.formulaireEquivalenceDemande.value)
       .subscribe(res => {
           const id = res.id;
           console.log(`id in add is ${id}`);

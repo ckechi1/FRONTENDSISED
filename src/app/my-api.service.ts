@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Demandeur } from './demandeur/demandeur';
 import { Formation } from './formation/formation';
@@ -19,6 +19,15 @@ const UrlApi = "/SISED/demandeur";
 export class MyApiService {
 
   constructor(private http: HttpClient) { }
+
+  findDemandeurPagination(pageNumber = 0, pageSize = 2):  Observable<any> {
+   const url = `${UrlApi}?page=${pageNumber}&size=${pageSize}`
+   return this.http.get<Demandeur[]>(url)
+     .pipe(tap(_ =>console.log('demandeurs paginé retourné')),
+     catchError(this.handleError('findDemandeurPagination',[]))
+     );
+}
+
 
 getDemandeurs(): Observable<Demandeur[]>{
      return this.http.get<Demandeur[]>(UrlApi)
@@ -88,6 +97,7 @@ getDemandeEquivalence(id:number):Observable<DemandeEquivalence[]>{
    catchError(this.handleError('getDemandeEquivalence',[]))
    );
  }
+
 addDemandeEquivalence(id:number , demandeEqui:DemandeEquivalence){
     console.log(` demandeur avec id=${id} `);
     const url = `${UrlApi}/${id}/DemandeEquivalence`;
