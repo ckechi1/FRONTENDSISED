@@ -6,6 +6,7 @@ import { DemandeEquivalenceDataSource } from './demande-equivalence-datasource';
 import { DemandeEquivalence } from './../../demandeEquivalence';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-demande-equivalence',
   templateUrl: './demande-equivalence.component.html',
@@ -16,46 +17,47 @@ export class DemandeEquivalenceComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<DemandeEquivalence>;
   dataSource: DemandeEquivalenceDataSource;
+  public  id = +this.route.snapshot.paramMap.get('id');
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns : string[] =  ['id', 'dateDepot','numeroRecepisse', 'numeroBordereau','diplomeAnterieur','diplomeDemande','update','delete',];
   //data: DemandeEquivalence[] = [];
   isLoadingResults = true;
 
+  constructor(private apiService : MyApiService , private route : ActivatedRoute , private router:Router) {
+  }
 
   ngOnInit() {
 
-    this.dataSource = new DemandeEquivalenceDataSource();
-    this.getDemandeEquivalence();
-    this.dataSource.data = [];
+    // const id = +this.route.snapshot.paramMap.get('id');
+     this.dataSource = new DemandeEquivalenceDataSource(this.apiService);
+     this.dataSource.loadDemandeEqui(this.id, 0 , 2);
 
-  }
-
-  constructor(private api : MyApiService , private route : ActivatedRoute , private router:Router){
-  }
+   }
 
 
-  doFilter = (value: any) => {
-    this.dataSource.data.filter = value.trim().toLocaleLowerCase();
-  }
+   ngAfterViewInit() {
+     this.dataSource.sort = this.sort;
+     this.table.dataSource = this.dataSource;
 
-  getDemandeEquivalence(){
-    const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id)
-    this.api.getDemandeEquivalence(id)
-    .subscribe((res:any) => {
-       this.table.dataSource=res;
-       this.isLoadingResults=false;
-    },err =>{
-       this.isLoadingResults=false;
-    });
-  }
+     this.paginator.page
+     .pipe(
+         tap(() => this.loadDemandeEquiPage() )
+     )
+     .subscribe();
+
+   }
 
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-  }
+   loadDemandeEquiPage() {
+  //  const id  = this.route.snapshot.paramMap.get('id')
+    this.dataSource.loadDemandeEqui(this.id , this.paginator.pageIndex, this.paginator.pageSize);
+   }
 
-}
+
+ }
+
+  // doFilter = (value: any) => {
+  //   this.dataSource.data.filter = value.trim().toLocaleLowerCase();
+  // }
+

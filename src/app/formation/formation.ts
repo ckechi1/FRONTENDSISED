@@ -1,4 +1,4 @@
-export class Formation {
+export interface Formation {
 
   id:number;
   nom:string;

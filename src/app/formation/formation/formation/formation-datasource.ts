@@ -1,81 +1,56 @@
-import { DataSource } from '@angular/cdk/collections';
+import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
-import {Formation} from'../../formation';
+import { map, catchError, finalize } from 'rxjs/operators';
+import { Observable, of as observableOf, merge, BehaviorSubject, of } from 'rxjs';
+import { Formation } from'../../formation';
+import { MyApiService } from 'src/app/my-api.service';
 /**
  * Data source for the Formation view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
+
 export class FormationDataSource extends DataSource<Formation> {
+
+  connect(collectionViewer: CollectionViewer): Observable<Formation[]> {
+    console.log("Connecting data source");
+    return this.formationSubject.asObservable();
+}
+
+  disconnect(collectionViewer: CollectionViewer): void {
+    this.formationSubject.complete();
+    this.loadingSubject.complete();
+}
+
   data: Formation[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
-    super();
+  private formationSubject = new BehaviorSubject<Formation[]>([]);
+
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  public loading$ = this.loadingSubject.asObservable();
+
+  public totalElements : number;
+
+  constructor(private apiService: MyApiService) {
+
+     super();
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<Formation[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
+  loadFormation(id:any , pageIndex:number, pageSize:number) {
+    this.loadingSubject.next(true);
+    this.apiService.findFormationPagination(id , pageIndex, pageSize).pipe(
+            catchError(() => of([])),
+            finalize(() => this.loadingSubject.next(false))
+        )
+        .subscribe(Result =>{
+          console.log(Result); // demandeur json object
+          this.totalElements = Result.totalElements; //   console.log(this.totalElements); // number of elements in my array
 
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+          this.formationSubject.next(Result.content)});
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect() {}
-
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-
-  private getPagedData(data: Formation[]) {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    return data.splice(startIndex, this.paginator.pageSize);
-  }
-
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-
-  private getSortedData(data: Formation[]) {
-    if (!this.sort.active || this.sort.direction === '') {
-      return data;
-    }
-
-    return data.sort((a, b,) => {
-      const isAsc = this.sort.direction === 'asc';
-      switch (this.sort.active) {
-        case 'nom': return compare(a.nom , b.pays , isAsc);
-        case 'pays': return compare(+a.id, +b.id, isAsc);
-        default: return 0;
-      }
-    });
-  }
-}
-
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-
-function compare(a, b, isAsc) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

@@ -1,4 +1,4 @@
-export class Demandeur {
+export interface Demandeur {
         id:number;
         nom:string;
         prenom:string;

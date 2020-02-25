@@ -28,14 +28,6 @@ export class MyApiService {
      );
 }
 
-
-getDemandeurs(): Observable<Demandeur[]>{
-     return this.http.get<Demandeur[]>(UrlApi)
-     .pipe(tap(_ =>console.log('demandeurs retourné')),
-     catchError(this.handleError('getDemandeurs',[]))
-     );
-  }
-
 getDemandeur(id:number):Observable<Demandeur>{
     const url =`${UrlApi}/${id}`;
     return this.http.get<Demandeur>(url).pipe(
@@ -44,7 +36,7 @@ getDemandeur(id:number):Observable<Demandeur>{
    );
    }
 
-addDemandeur(demandeur : Demandeur):Observable<Demandeur> {
+addDemandeur(demandeur : Demandeur):Observable<any> {
     return this.http.post<Demandeur>(UrlApi, demandeur, httpOptions).pipe(
       tap((newdemandeur : Demandeur) => console.log(`added demandeur w/ id=${newdemandeur.id}`)),
       catchError(this.handleError<Demandeur>('addDemandeur'))
@@ -66,6 +58,7 @@ deleteDemandeur(id: any): Observable<Demandeur> {
       catchError(this.handleError<Demandeur>('deleteDemande'))
     );
   }
+
    /// formation service ///
 
 addFormation(id:any , formation :Formation){
@@ -79,24 +72,34 @@ addFormation(id:any , formation :Formation){
     );
   }
 
-getFormations(id:number): Observable<Formation[]>{
-    const url = `${UrlApi}/${id}/formation`;
-    return this.http.get<Formation[]>(url)
-    .pipe(tap(Formation =>console.log(`formation avec demandeur id=${id}`)),
-    catchError(this.handleError('getFormations',[]))
+
+ findFormationPagination(id : number , pageNumber = 0, pageSize = 2):Observable<any> {
+  const url = `${UrlApi}/${id}/formation?page=${pageNumber}&size=${pageSize}`
+  return this.http.get<Formation[]>(url)
+    .pipe(tap(_ =>console.log('Formations paginé retourné')),
+    catchError(this.handleError('findformationpaginé',[]))
     );
- }
+}
+
+updateFormation(id1:number , id2:number , demandeur): Observable<any> {
+  const url = `${UrlApi}/${id1}/formation/${id2}`;
+  return this.http.put(url, demandeur, httpOptions).pipe(
+    tap(_ => console.log(`Formation modifié id1=${id1} , id2=${id2}`)),
+    catchError(this.handleError<any>('updateFormation'))
+  );
+}
 
     /// DemandeEquivalence service ///
 
-getDemandeEquivalence(id:number):Observable<DemandeEquivalence[]>{
-   const url = `${UrlApi}/${id}/DemandeEquivalence`;
-   console.log(`demandeEquivalence with id = ${id}`);
+getDemandeEquivalencePagination(id:number , pageNumber = 0, pageSize = 2):Observable<any[]>{
+   const url = `${UrlApi}/${id}/DemandeEquivalence?page=${pageNumber}&size=${pageSize}`;
+  // console.log(`demandeEquivalence with id = ${id}`);
    return this.http.get<DemandeEquivalence[]>(url)
    .pipe(tap(DemandeEquivalence=>console.log(`demandeEquivalence with id =${id}`)),
-   catchError(this.handleError('getDemandeEquivalence',[]))
+   catchError(this.handleError('getDemandeEquivalencePaginé',[]))
    );
  }
+
 
 addDemandeEquivalence(id:number , demandeEqui:DemandeEquivalence){
     console.log(` demandeur avec id=${id} `);
