@@ -81,6 +81,14 @@ addFormation(id:any , formation :Formation){
     );
 }
 
+getFormation(id1:number , id2:number):Observable<Demandeur>{
+ const url = `${UrlApi}/${id1}/formation/${id2}`;
+ return this.http.get<Demandeur>(url).pipe(
+ tap(_=>console.log(`formation retourné avec id1=${id1} et id2${id2}`)),
+ catchError(this.handleError<Demandeur>(`getDemandeur id1=${id1} , id=${id2}`))
+  );
+ }
+
 updateFormation(id1:number , id2:number , demandeur): Observable<any> {
   const url = `${UrlApi}/${id1}/formation/${id2}`;
   return this.http.put(url, demandeur, httpOptions).pipe(

@@ -29,7 +29,7 @@ export class DemandeurEditComponent implements OnInit {
   ngOnInit() {
     this.getDemandeur(this.route.snapshot.params['id']);
     //this.id  = this.route.snapshot.params['id'];
-    console.log(this.id);
+   // console.log(this.id);
     this.formulaireDemandeur = this.formBuilder.group({
       'nom' : [null, Validators.required],
       'prenom' : [null, Validators.required],

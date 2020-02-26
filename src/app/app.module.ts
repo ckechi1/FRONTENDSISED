@@ -25,7 +25,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
 import { FormationComponent } from './formation/formation/formation/formation.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
+import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
+import { DateAdapter } from '@angular/material';
+import { CustomDateAdapter } from './customDateAdapter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +39,9 @@ import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEqui
     DemandeurDetailComponent,
     DemandeurEditComponent,
     LogoutComponent,
-    LoginComponent, SidenavComponent, FormationAddComponent, FormationComponent, DemandeEquivalenceComponent, DemandeEquivalenceAddComponent
+    LoginComponent, SidenavComponent,
+    FormationAddComponent, FormationComponent, FormationEditComponent ,
+    DemandeEquivalenceComponent, DemandeEquivalenceAddComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -44,6 +51,7 @@ import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEqui
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
       BrowserAnimationsModule,
       MatInputModule,
       MatTableModule,
@@ -79,11 +87,16 @@ import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEqui
   ],
   providers: [
     {
+      provide: DateAdapter, useClass: CustomDateAdapter
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FormationEditComponent]
+
 })
 export class AppModule { }

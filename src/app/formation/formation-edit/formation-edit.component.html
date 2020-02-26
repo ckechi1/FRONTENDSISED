@@ -1,1 +1,41 @@
-<p>formation-edit works!</p>
+<mat-dialog-content [formGroup]="form">
+
+  <div class="mat-form-field--inline">
+
+  <mat-form-field>
+      <input matInput placeholder="Nom de la formation " formControlName="nom">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Pays de la formation " formControlName="pays">
+</mat-form-field>
+
+  </div>
+  <div class="mat-form-field--inline">
+
+<mat-form-field>
+  <input matInput placeholder="spécialité de la formation" formControlName="specialite">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="date d'obtention" formControlName="dateObtention" [matDatepicker]="picker">
+    <mat-label>Choisir la date d'obtention</mat-label>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+</div>
+<div class="mat-form-field--inline">
+
+<mat-form-field>
+  <input matInput placeholder="établissement de la formation" formControlName="etablissement">
+</mat-form-field>
+
+</div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between ">
+  <button class="mat-raised-button mat-primary"(click)="save()" >Valider</button>
+  <button mat-flat-button color="warn" (click)="close()">Annuler</button>
+</mat-dialog-actions>

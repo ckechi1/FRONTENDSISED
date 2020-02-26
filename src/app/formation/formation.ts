@@ -4,7 +4,7 @@ export interface Formation {
   nom:string;
   pays:string;
   specialite:string;
-  dateObtention:string;
+  dateObtention:Date;
   etablissement:string;
 
  }

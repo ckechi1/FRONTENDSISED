@@ -11,6 +11,7 @@ import { FormationAddComponent } from './formation/formation-add/formation-add.c
 import { FormationComponent } from './formation/formation/formation/formation.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component'
 import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
+import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
 const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
     /* --- formation routers --- */
 
    {path :'formation-add ', component:FormationAddComponent , data:{title:'Add formation '}},
+   {path :'demandeur-detail/:id/:id ', component:FormationEditComponent , data:{title:'Edit formation '}},
    {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
 
     /* --- Demande equivalence routers --- */
