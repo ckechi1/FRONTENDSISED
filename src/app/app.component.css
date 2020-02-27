@@ -4,11 +4,27 @@
 }
 
 .mat-toolbar {
-  min-height: 40px !important;
-  height: 40px !important;
+  min-height: 35px !important;
+  height: 35px !important;
 }
 
 .mat-toolbar-row {
-  min-height: 40px !important;
-  height: 40px !important;
+  min-height: 35px !important;
+  height: 35px !important;
 }
+/* resize button */
+.mbutton{
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+
+/* resize footer text  */
+.footer-text{
+  font-size: 12px;
+  line-height: 12px;
+
+}
+
+
