@@ -3,3 +3,12 @@
   align-items: center;
 }
 
+.mat-toolbar {
+  min-height: 40px !important;
+  height: 40px !important;
+}
+
+.mat-toolbar-row {
+  min-height: 40px !important;
+  height: 40px !important;
+}

@@ -14,7 +14,7 @@ import { MyApiService } from 'src/app/my-api.service';
 export class FormationDataSource extends DataSource<Formation> {
 
   connect(collectionViewer: CollectionViewer): Observable<Formation[]> {
-    console.log("Connecting data source");
+    console.log("Connecting formation datasource");
     return this.formationSubject.asObservable();
 }
 
@@ -47,7 +47,7 @@ export class FormationDataSource extends DataSource<Formation> {
             finalize(() => this.loadingSubject.next(false))
         )
         .subscribe(Result =>{
-          console.log(Result); // demandeur json object
+        //  console.log(Result); // demandeur json object
           this.totalElements = Result.totalElements; //   console.log(this.totalElements); // number of elements in my array
 
           this.formationSubject.next(Result.content)});

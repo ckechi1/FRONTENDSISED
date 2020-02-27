@@ -26,7 +26,7 @@ export class DemandeurDetailComponent implements OnInit {
     this.api.getDemandeur(id)
       .subscribe((data: any) => {
         this.demandeur = data;
-        console.log(this.demandeur);
+      //  console.log(this.demandeur);
         this.isLoadingResults = false;
       });
   }

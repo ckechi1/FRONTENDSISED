@@ -15,7 +15,7 @@ import { MyApiService } from 'src/app/my-api.service';
 export class DemandeEquivalenceDataSource extends DataSource<DemandeEquivalence> {
 
   connect(collectionViewer: CollectionViewer): Observable<DemandeEquivalence[]> {
-    console.log("Connecting data source");
+    console.log("Connecting demandeEquivalence datasource");
     return this.demandeEquiSubject.asObservable();
 }
 

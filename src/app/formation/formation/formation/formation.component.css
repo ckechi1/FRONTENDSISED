@@ -1,3 +1,10 @@
 .full-width-table {
   width: 100%;
 }
+
+.button-add {
+  position:absolute;
+  transition: .5s ease;
+  top: 5%;
+  left: 93%;
+}
