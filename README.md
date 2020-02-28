@@ -6,16 +6,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 In general you would Run `ng serve` to start the  server and navigate to `http://localhost:4200/` but in this case i change the proxy config to reach the backend instead of using ` @CrossOrigin(origins = "http://localhost:4200")` Spring boot side.   
 you have to change the `proxy.json.config` file inside angular to match the backend uri. 
-`  
-{ 
+`{ 
     "/SISED/*": {
         "target": "http://localhost:8080",
         "secure": false,
         "logLevel": "debug"
       }
      
-}   
-`
+}` 
+
 then `npm start` to start the server . The app will automatically reload if you change any of the source files. 
       
 ### project screenshot 
