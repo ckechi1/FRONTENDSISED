@@ -28,7 +28,7 @@ export class FormationAddComponent implements OnInit {
   nom:'';
   pays:'';
   specialite:'';
-  dateObtention:'';
+  dateObtention:Date=null;
   Etablissement:'';
   isloadingResults=false;
   matcher = new MyErrorStateMatcher();

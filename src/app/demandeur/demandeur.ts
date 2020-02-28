@@ -4,7 +4,7 @@ export interface Demandeur {
         prenom:string;
         genre:string;
         nationalite:string;
-        dateNaissance:string;
+        dateNaissance:Date;
         lieuNaissance:string;
         adresse:string;
         telephone:number;

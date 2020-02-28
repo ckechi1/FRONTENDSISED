@@ -15,7 +15,7 @@ export class DemandeurEditComponent implements OnInit {
   prenom:string='';
   genre:string='';
   nationalite:string='';
-  dateNaissance:string='';
+  dateNaissance:Date=null;
   lieuNaissance:string='';
   adresse:string='';
   telephone:number=null;

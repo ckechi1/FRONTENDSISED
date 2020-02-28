@@ -18,6 +18,8 @@ const UrlApi = "/SISED/demandeur";
 
 export class MyApiService {
 
+
+
   constructor(private http: HttpClient) { }
 
 findDemandeurPagination(pageNumber = 0, pageSize = 2):  Observable<any> {
@@ -114,7 +116,7 @@ getDemandeEquivalencePagination(id:number , pageNumber = 0, pageSize = 2):Observ
  }
 
 
-addDemandeEquivalence(id:number , demandeEqui:DemandeEquivalence){
+addDemandeEquivalence(id:number , demandeEqui){
     console.log(` demandeur avec id=${id} `);
     const url = `${UrlApi}/${id}/DemandeEquivalence`;
     return this.http.post<DemandeEquivalence>(url,demandeEqui,httpOptions)
@@ -123,6 +125,21 @@ addDemandeEquivalence(id:number , demandeEqui:DemandeEquivalence){
     );
 }
 
+updateDemandeEquivalence(id1:number , id2:number , demandeEqui): Observable<any> {
+  const url = `${UrlApi}/${id1}/DemandeEquivalence/${id2}`;
+  return this.http.put(url, demandeEqui, httpOptions).pipe(
+    tap(_ => console.log(`DemandeEquivalence modifié avec demandeurid=${id1} , formationid=${id2}`)),
+    catchError(this.handleError<any>('updateFormation'))
+  );
+}
+
+deleteDemandeEquivalence(id1: number, id2: number) {
+  const url = `${UrlApi}/${id1}/DemandeEquivalence/${id2}`;
+  return this.http.delete<DemandeEquivalence>(url).pipe(
+  tap(_=>console.log(`DemandeEquivalence retourné avec id1=${id1} et id2${id2}`)),
+  catchError(this.handleError<DemandeEquivalence>(`deleteDemandeEquivalence id1=${id1} , id=${id2}`))
+   );
+}
 
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {

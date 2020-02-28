@@ -10,13 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DemandeurDetailComponent implements OnInit {
 
-  demandeur : Demandeur ={id:null,nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:'',lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ;
+  demandeur : Demandeur ={id:null, nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:null,lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ;
   isLoadingResults=true;
 
   constructor(private route:ActivatedRoute ,private api : MyApiService , private router : Router) { }
 
   ngOnInit() {
-   // this.getDemandeurDetails(this.route.snapshot.params['id'])
+  //this.getDemandeurDetails(this.route.snapshot.params['id'])
   this.getDemandeurDetails();
 
   }
@@ -26,7 +26,7 @@ export class DemandeurDetailComponent implements OnInit {
     this.api.getDemandeur(id)
       .subscribe((data: any) => {
         this.demandeur = data;
-      //  console.log(this.demandeur);
+      // console.log(this.demandeur);
         this.isLoadingResults = false;
       });
   }

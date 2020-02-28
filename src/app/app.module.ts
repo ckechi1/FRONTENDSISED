@@ -96,7 +96,7 @@ import { CustomDateAdapter } from './customDateAdapter';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [FormationEditComponent]
+  entryComponents: [FormationEditComponent , DemandeEquivalenceAddComponent]
 
 })
 export class AppModule { }

@@ -27,7 +27,7 @@ export class DemandeurAddComponent implements OnInit {
   prenom='';
   genre='';
   nationalite='';
-  dateNaissance='';
+  dateNaissance:Date=null;
   lieuNaissance='';
   adresse='';
   telephone:number=null;

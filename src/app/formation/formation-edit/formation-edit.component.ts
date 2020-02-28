@@ -11,6 +11,7 @@ import { FormationComponent} from '../formation/formation/formation.component';
   templateUrl: './formation-edit.component.html',
   styleUrls: ['./formation-edit.component.css']
 })
+
 export class FormationEditComponent implements OnInit {
 
   formation : any;
@@ -21,7 +22,7 @@ export class FormationEditComponent implements OnInit {
   nom:string='';
   pays:string='';
   specialite:string='';
-  dateObtention:any='';
+  dateObtention:Date=null;
   etablissement:string='';
   isloadingResults=false;
 

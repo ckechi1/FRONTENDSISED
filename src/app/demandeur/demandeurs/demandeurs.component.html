@@ -42,7 +42,7 @@
       <!-- dateNaissance du demandeur -->
       <ng-container matColumnDef="dateNaissance">
         <th mat-header-cell *matHeaderCellDef>DATE NAISSANCE</th>
-        <td mat-cell *matCellDef="let row">{{row.dateNaissance}}</td>
+        <td mat-cell *matCellDef="let row">{{row.dateNaissance | date:'dd/MM/yyyy' : 'LL'}}</td>
       </ng-container>
 
       <!-- lieuNaissance du demandeur  -->
