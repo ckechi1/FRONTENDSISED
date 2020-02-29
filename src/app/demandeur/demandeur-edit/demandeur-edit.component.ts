@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from '../../my-api.service';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import {  FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-demandeur-edit',
   templateUrl: './demandeur-edit.component.html',
@@ -24,7 +24,8 @@ export class DemandeurEditComponent implements OnInit {
   numeroPieceDidentite:number=null;
   isloadingResults=false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: MyApiService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+              private api: MyApiService, private formBuilder: FormBuilder, ) { }
 
   ngOnInit() {
     this.getDemandeur(this.route.snapshot.params['id']);
@@ -51,9 +52,9 @@ export class DemandeurEditComponent implements OnInit {
       this.formulaireDemandeur.setValue({
         nom : data.nom,
         prenom : data.prenom,
-        genre : data.genre,
+        genre :  data.genre,
         nationalite :data.nationalite,
-        dateNaissance : data.dateNaissance,
+        dateNaissance : new Date(data.dateNaissance),
         lieuNaissance: data.lieuNaissance,
         adresse : data.adresse,
         telephone : data.telephone,
@@ -62,6 +63,7 @@ export class DemandeurEditComponent implements OnInit {
         numeroPieceDidentite : data.numeroPieceDidentite
       })
     })
+
   }
 
   onFormSubmit(form:NgForm){

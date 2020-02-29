@@ -4,7 +4,6 @@ import { MyApiService } from '../../my-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Demandeur } from '../demandeur';
-
 ///////////////////////////////////////////////*******************/////////////////////////////////////////////////
 /** erreur handler when invalid control is dirty, touched, or submitted. */
 // export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,6 +20,15 @@ import { Demandeur } from '../demandeur';
 })
 export class DemandeurAddComponent implements OnInit {
 
+  // genre = [
+  //   {id: 1, name: "masculin"},
+  //   {id: 2, name: "feminin"},
+  // ];
+
+  // status = [
+  //   {id: 1, name: "stagiaire"},
+  //   {id: 2, name: "fonctionnaire"},
+  // ];
 
   formulaireDemandeur :FormGroup;
   nom ='';
@@ -42,18 +50,18 @@ export class DemandeurAddComponent implements OnInit {
   ngOnInit() {
 
   this.formulaireDemandeur = this.formBuilder.group({
-     id: [],
+    'id':[],
     'nom' : [null, Validators.required],
     'prenom' : [null, Validators.required],
     'genre': [null, Validators.required],
     'status': [null, Validators.required],
     'nationalite': [null, Validators.required],
     'numeroPieceDidentite': [null, Validators.required],
-      'dateNaissance': [null, Validators.required],
-      'lieuNaissance': [null, Validators.required],
-      'adresse': [null, Validators.required],
-      'telephone': [null, Validators.required],
-      'email': [null, Validators.required],
+    'dateNaissance': [null, Validators.required],
+    'lieuNaissance': [null, Validators.required],
+    'adresse': [null, Validators.required],
+    'telephone': [null, Validators.required],
+    'email': [null, Validators.required],
   });
 
 }

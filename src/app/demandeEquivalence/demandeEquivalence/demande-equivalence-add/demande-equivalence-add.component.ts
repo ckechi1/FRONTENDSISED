@@ -32,7 +32,7 @@ constructor(private router: Router, private route: ActivatedRoute,
             this.demandeurId = data.demandeurId;
             //  console.log(`demandeurId=${this.demandeurId} , FormationId=${this.id}`);
             this.form = fb.group({
-            dateDepot: [data.dateDepot, Validators.required],
+            dateDepot: [new Date(data.dateDepot), Validators.required],
             numeroRecepisse: [data.numeroRecepisse, Validators.required],
             numeroBordereau: [data.numeroBordereau, Validators.required],
             diplomeAnterieur: [data.diplomeAnterieur, Validators.required],

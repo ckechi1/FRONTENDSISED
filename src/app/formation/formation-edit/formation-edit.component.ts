@@ -38,7 +38,7 @@ export class FormationEditComponent implements OnInit {
              nom: [data.nom, Validators.required],
              pays: [data.pays, Validators.required],
              specialite: [data.specialite, Validators.required],
-             dateObtention: [data.dateObtention, Validators.required],
+             dateObtention: [new Date (data.dateObtention), Validators.required],
              etablissement: [data.etablissement, Validators.required],
       });
 

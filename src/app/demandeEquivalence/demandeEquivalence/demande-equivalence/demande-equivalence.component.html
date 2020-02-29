@@ -2,9 +2,6 @@
   <button mat-button color="primary" (click)=" addDemandeEquivalence()"><mat-icon>add_circle</mat-icon></button>
 </div>
 
- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-  <mat-spinner></mat-spinner>
-</div>
 <div class="mat-elevation-z8">
 
   <table mat-table  class="full-width-table" matSort aria-label="Elements">
@@ -44,7 +41,7 @@
     <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" (click)="editDemandeurEquivalence(row)" >
+          <button mat-icon-button color="accent" (click)="editDemandeurEquivalence(row)" >
               <mat-icon class="mat-18">edit</mat-icon>
           </button>
         </td>
@@ -67,10 +64,11 @@
   <mat-paginator #paginator
   [length]="dataSource?.totalElements"
   [pageIndex]="0"
-  [pageSize]="3"
-  [pageSizeOptions]="[4,5]">
+  [pageSize]="2"
+  [pageSizeOptions]="[3]">
   </mat-paginator>
-
 </div>
 
-
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>

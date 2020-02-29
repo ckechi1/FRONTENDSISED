@@ -69,8 +69,8 @@ export class FormationComponent implements AfterViewInit, OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width='600px';
-      dialogConfig.height='280px';
-      dialogConfig.position={ right: '30px', bottom: '130px' }
+      dialogConfig.height='330px';
+      //dialogConfig.position={ right: '30px', bottom: '130px' }
       const demandeurId = this.id ;
       let data = { demandeurId };
       dialogConfig.data = data
@@ -89,7 +89,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width='600px';
-    dialogConfig.height='280px';
+    dialogConfig.height='330px';
     const demandeurId = this.id ;
     let data = { demandeurId , id , nom , pays, specialite , dateObtention , etablissement };
     dialogConfig.data = data;
