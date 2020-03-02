@@ -8,6 +8,7 @@ import { AuthenticationService } from './auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+   isOn = true;
 
   username: string;
   password : string;
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService) {   }
 
-  ngOnInit() { 
-    
+  ngOnInit() {
+
   }
 
   handleLogin() {
@@ -34,6 +35,6 @@ export class LoginComponent implements OnInit {
     }, () => {
       this.invalidLogin = true;
       this.loginSuccess = false;
-    });      
+    });
   }
 }

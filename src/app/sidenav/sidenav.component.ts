@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewChild, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-
+import { SideNavService } from '../shared/side-nav.service';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent  {
+export class SidenavComponent implements OnInit {
+
   opened = true;
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
+   constructor(private sidenavService : SideNavService){ }
+
   ngOnInit() {
+
+     this.sidenavService.sidenavToggleBsubject.subscribe(() => { this.sidenav.toggle(); });
+
    // console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;

@@ -1,15 +1,13 @@
 <mat-toolbar color="primary" class="header">
-  <button mat-button routerLink="/demandeurs"><mat-icon>home</mat-icon></button>
+  <mat-slide-toggle (click)="clickMenu()" color="accent" ></mat-slide-toggle>
     <span class="nav-tool-items" >
       <a mat-button  class ="mbutton" routerLink="login" routerLinkActive="active" >connexion</a>
       <a mat-button  class ="mbutton" mat-raised-button routerLink="logout" routerLinkActive="active">créer utilisateur </a>
     </span>
   </mat-toolbar>
 
-
   <!-- Main content -->
 <app-sidenav></app-sidenav>
-
 
 <mat-toolbar color="primary" class="footer" fxLayoutAlign="center center" >
 <div class="footer-text">Systeme Intégré de suivi des Equivalences Des Diplomes Tout droit reservé @CAISFF</div>

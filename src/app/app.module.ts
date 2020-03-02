@@ -1,4 +1,4 @@
-import {MatInputModule,MatPaginatorModule,MatProgressSpinnerModule,MatSortModule,MatTableModule,MatIconModule,MatButtonModule,MatCardModule,MatFormFieldModule, MatBadgeModule, MatGridListModule, MatSelectModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatTooltipModule } from "@angular/material";
+import {MatInputModule,MatSlideToggleModule,MatPaginatorModule,MatProgressSpinnerModule,MatSortModule,MatTableModule,MatIconModule,MatButtonModule,MatCardModule,MatFormFieldModule, MatBadgeModule, MatGridListModule, MatSelectModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatTooltipModule } from "@angular/material";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,11 +25,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
 import { FormationComponent } from './formation/formation/formation/formation.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
 import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
 import { DateAdapter } from '@angular/material';
 import { CustomDateAdapter } from './customDateAdapter';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CustomDateAdapter } from './customDateAdapter';
       MatInputModule,
       MatTableModule,
       MatPaginatorModule,
+      MatSlideToggleModule,
       MatSortModule,
       MatProgressSpinnerModule,
       MatIconModule,

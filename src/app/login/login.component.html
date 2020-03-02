@@ -1,17 +1,19 @@
+<!-- <app-root *ngIf="!isOn"></app-root> -->
+<app-sidenav *ngIf="!isOn"></app-sidenav>
 
-   <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
       <mat-card class="box">
         <mat-card-header>
           <mat-card-title>Connexion</mat-card-title>
         </mat-card-header>
-    
+
         <form class="example-form">
           <mat-card-content>
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Username">
             </mat-form-field>
-    
+
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Password">
             </mat-form-field>
@@ -19,9 +21,9 @@
           <button mat-stroked-button color="primary" class="btn-block">Connexion</button>
         </form>
       </mat-card>
-    
+
     </div>
-   
+
   <!--
   <div class="container col-lg-6">
     <h1 class="text-center">Login</h1>
@@ -32,13 +34,11 @@
           <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
           <div class="form-group">
             <label for="email">User Name :</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
-              name="username">
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name" name="username">
           </div>
           <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
-              name="password">
+            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password" name="password">
           </div>
           <button (click)=handleLogin() class="btn btn-success">Login</button>
         </form>
@@ -46,4 +46,3 @@
     </div>
   </div>   -->
 
- 

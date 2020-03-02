@@ -14,43 +14,32 @@ import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEqui
 import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
 const routes: Routes = [
 
-  {path: 'login', component: LoginComponent},
- // {path: '', component: LoginComponent},
+   {path: 'login', component: LoginComponent},
+//  {path: '', component: LoginComponent},
 //  {path: 'logout', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent},
+   {path: 'logout', component: LogoutComponent},
 
-/*
-  { path: '', component: LoginComponent },
-  { path: '', children: [
+
+    { path: '', component: LoginComponent },
+    { path: '', children: [
     { path: 'demandeurs', component: DemandeursComponent }
-  ] },
+   ] },
 
-*/
+
       /* --- Demandeurs routers ---  */
-
    {path:'demandeur-add',component:DemandeurAddComponent,data:{ title:'Add demandeur'}},
-
    {path:'demandeurs',component:DemandeursComponent,data:{title:'List of demandeurs'}},
-
    {path:'demandeur-detail/:id',component:DemandeurDetailComponent,data:{title:'demandeur detail'}},
-
    {path:'demandeur-edit/:id',component:DemandeurEditComponent,data: {title:'Edit demandeur'}},
-
-    /* --- formation routers --- */
-
+   /* --- formation routers --- */
    {path :'formation-add ', component:FormationAddComponent , data:{title:'Add formation '}},
    {path :'demandeur-detail/:id/:id ', component:FormationEditComponent , data:{title:'Edit formation '}},
    {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
-
-    /* --- Demande equivalence routers --- */
-
-    {path :'demandeEquivalence',component:DemandeEquivalenceComponent,data:{title:'List of demandeEquivalence'}},
-    {path :'demandeEquivalence-add',component:DemandeEquivalenceAddComponent,data:{title:'List of demandeEquivalence'}},
-
-
+   /* --- Demande equivalence routers --- */
+   {path :'demandeEquivalence',component:DemandeEquivalenceComponent,data:{title:'List of demandeEquivalence'}},
+   {path :'demandeEquivalence-add',component:DemandeEquivalenceAddComponent,data:{title:'List of demandeEquivalence'}},
    /* --- default route --- */
-   {path:'',redirectTo:'/demandeurs',pathMatch:'full'}
-
+   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 
  ];
