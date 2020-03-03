@@ -32,15 +32,14 @@ const routes: Routes = [
    {path:'demandeur-detail/:id',component:DemandeurDetailComponent,data:{title:'demandeur detail'}},
    {path:'demandeur-edit/:id',component:DemandeurEditComponent,data: {title:'Edit demandeur'}},
    /* --- formation routers --- */
-   {path :'formation-add ', component:FormationAddComponent , data:{title:'Add formation '}},
-   {path :'demandeur-detail/:id/:id ', component:FormationEditComponent , data:{title:'Edit formation '}},
+   {path :'demandeur-add/:id/:id ', component:FormationEditComponent , data:{title:'Edit formation '}},
+   {path :'formation-add', component:FormationAddComponent , data:{title:'Add formation '}},
    {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
    /* --- Demande equivalence routers --- */
    {path :'demandeEquivalence',component:DemandeEquivalenceComponent,data:{title:'List of demandeEquivalence'}},
    {path :'demandeEquivalence-add',component:DemandeEquivalenceAddComponent,data:{title:'List of demandeEquivalence'}},
    /* --- default route --- */
    {path:'',redirectTo:'/login',pathMatch:'full'}
-
 
  ];
 

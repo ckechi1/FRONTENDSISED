@@ -41,7 +41,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
   ngOnInit() {
    // const id = +this.route.snapshot.paramMap.get('id');
     this.dataSource = new FormationDataSource(this.apiService);
-    this.dataSource.loadFormation(this.id, 0 , 3);
+    this.dataSource.loadFormation( 0 , 3);
 
   }
 
@@ -60,11 +60,12 @@ export class FormationComponent implements AfterViewInit, OnInit {
 
   loadFormationPage() {
  //  const id  = this.route.snapshot.paramMap.get('id')
-   this.dataSource.loadFormation(this.id , this.paginator.pageIndex, this.paginator.pageSize);
+   this.dataSource.loadFormation(this.paginator.pageIndex, this.paginator.pageSize);
 
   }
 
   addformation(){
+
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -83,7 +84,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
   }
 
   // this editformation button redirect to formationEdit therefore all config related to the dialog goes in there
-  editFormation({ id , nom , pays, specialite , dateObtention , etablissement }:Formation) {
+  editFormation({ id , nom , specialite , niveau , estDiplomate  }:Formation) {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -91,7 +92,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
     dialogConfig.width='600px';
     dialogConfig.height='330px';
     const demandeurId = this.id ;
-    let data = { demandeurId , id , nom , pays, specialite , dateObtention , etablissement };
+    let data = { demandeurId , id , nom , specialite , niveau , estDiplomate };
     dialogConfig.data = data;
 
     const dialogRef = this.dialog.open(FormationEditComponent,dialogConfig);
@@ -105,7 +106,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
 
   deleteFormation(formationId:number){
     this.isLoadingResults = true;
-    this.apiService.DeleteFormation(this.id , formationId)
+    this.apiService.DeleteFormation(this.id )
     .subscribe(() => {
       this.isLoadingResults=false;
       this.loadFormationPage();

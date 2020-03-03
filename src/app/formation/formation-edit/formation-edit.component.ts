@@ -15,15 +15,13 @@ import { FormationComponent} from '../formation/formation/formation.component';
 export class FormationEditComponent implements OnInit {
 
   formation : any;
-  public demandeurId : number;
 
   form: FormGroup;
   id:number=null;
   nom:string='';
-  pays:string='';
   specialite:string='';
-  dateObtention:Date=null;
-  etablissement:string='';
+  niveau:Date=null;
+  estDiplomate:string='';
   isloadingResults=false;
 
   constructor(private router: Router, private route: ActivatedRoute,
@@ -32,14 +30,11 @@ export class FormationEditComponent implements OnInit {
              @Inject(MAT_DIALOG_DATA) data){
 
              this.id=data.id; // assign formation.id from dialog.id  to formation id
-             this.demandeurId = data.demandeurId;
-             //  console.log(`demandeurId=${this.demandeurId} , FormationId=${this.id}`);
              this.form = fb.group({
              nom: [data.nom, Validators.required],
-             pays: [data.pays, Validators.required],
+             niveau: [data.niveau, Validators.required],
              specialite: [data.specialite, Validators.required],
-             dateObtention: [new Date (data.dateObtention), Validators.required],
-             etablissement: [data.etablissement, Validators.required],
+             estDiplomate: [data.estDiplomate, Validators.required],
       });
 
   }
@@ -54,7 +49,7 @@ onFormSubmit(form:NgForm){
     this.isloadingResults = true;
     // check if the formation id is available and add form jump to update if present
     if (this.id == null || undefined ){
-        this.api.addFormation(this.demandeurId,form)
+        this.api.addFormation(form)
         .subscribe(
           res=> {
            // let data = res;
@@ -65,7 +60,7 @@ onFormSubmit(form:NgForm){
           },
         )
     } else {
-      this.api.updateFormation(this.demandeurId, this.id,form)
+      this.api.updateFormation(this.id,form)
       .subscribe(res => {
        // let id = res['id'];
        this.isloadingResults = false;

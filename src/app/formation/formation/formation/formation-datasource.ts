@@ -5,6 +5,7 @@ import { map, catchError, finalize } from 'rxjs/operators';
 import { Observable, of as observableOf, merge, BehaviorSubject, of } from 'rxjs';
 import { Formation } from'../../formation';
 import { MyApiService } from 'src/app/my-api.service';
+
 /**
  * Data source for the Formation view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
@@ -40,16 +41,15 @@ export class FormationDataSource extends DataSource<Formation> {
      super();
   }
 
-  loadFormation(id:any , pageIndex:number, pageSize:number) {
+  loadFormation(pageIndex:number, pageSize:number) {
     this.loadingSubject.next(true);
-    this.apiService.findFormationPagination(id , pageIndex, pageSize).pipe(
+    this.apiService.findFormationPagination( pageIndex, pageSize).pipe(
             catchError(() => of([])),
             finalize(() => this.loadingSubject.next(false))
         )
         .subscribe(Result =>{
         //  console.log(Result); // demandeur json object
           this.totalElements = Result.totalElements; //   console.log(this.totalElements); // number of elements in my array
-
           this.formationSubject.next(Result.content)});
   }
 

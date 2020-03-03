@@ -1,8 +1,7 @@
- 
-  .mat-flat-button {
+
+  /* .mat-flat-button {
     margin: 5px;
-  } 
-   
+  }
 
   .mat-form-field--inline {
     display: flex;
@@ -11,11 +10,28 @@
 }
 
 .mat-form-field--inline .mat-form-field {
-    display: inline-block; 
+    display: inline-block;
     width: 20%;
     vertical-align: middle;
 }
 
 .mat-form-field--inline .mat-form-field:nth-child(1) {
     margin-right: 10px;
-} 
+} */
+
+table {
+  width: 100%;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.button-add {
+  position:absolute;
+  transition: .5s ease;
+  top: 5%;
+  left: 93%;
+}
+
+.gray { background-color: #f5f5f562 }

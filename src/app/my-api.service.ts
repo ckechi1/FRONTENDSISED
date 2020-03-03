@@ -11,6 +11,7 @@ const httpOptions = {
 };
 
 const UrlApi = "/SISED/demandeur";
+const UrlApi2 = "/SISED" ;
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,7 @@ const UrlApi = "/SISED/demandeur";
 export class MyApiService {
 
 
-
-  constructor(private http: HttpClient) { }
+constructor(private http: HttpClient) { }
 
 findDemandeurPagination(pageNumber = 0, pageSize = 2):  Observable<any> {
    const url = `${UrlApi}?page=${pageNumber}&size=${pageSize}`
@@ -36,7 +36,7 @@ getDemandeur(id:number):Observable<Demandeur>{
    tap(_=>console.log(`demandeur retourné id=${id}`)),
    catchError(this.handleError<Demandeur>(`getDemandeur id=${id}`))
    );
-   }
+ }
 
 addDemandeur(demandeur : Demandeur):Observable<any> {
     return this.http.post<Demandeur>(UrlApi, demandeur, httpOptions).pipe(
@@ -49,7 +49,7 @@ updateDemandeur(id:number , demandeur): Observable<any> {
      const url = `${UrlApi}/${id}`;
      return this.http.put(url, demandeur, httpOptions).pipe(
        tap(_ => console.log(`demandeur modifié id=${id}`)),
-       catchError(this.handleError<any>('updateDemande'))
+       catchError(this.handleError<any>('updateDemandeur'))
      );
    }
 
@@ -62,44 +62,44 @@ deleteDemandeur(id: any): Observable<Demandeur> {
   }
 
    /// formation service ///
-addFormation(id:number , formation ): Observable<any>{
-    console.log(` formation retourné = id=${id}`);
-    const url = `${UrlApi}/${id}/formation`;
+
+addFormation(formation ): Observable<any>{
+    console.log(` formation retourné `);
+    const url = `${UrlApi2}/formation`;
     return this.http.post<Formation>(url,formation,httpOptions)
       .pipe(tap(formation=> console.log(`formation ajouté avec id=${formation.id}`)),
       catchError(this.handleError<Formation>('addFormation'))
     );
   }
 
-
-findFormationPagination(id : number , pageNumber = 0, pageSize = 2):Observable<any> {
-  const url = `${UrlApi}/${id}/formation?page=${pageNumber}&size=${pageSize}`
+findFormationPagination(pageNumber = 0, pageSize = 2):Observable<any> {
+  const url = `${UrlApi2}/formation?page=${pageNumber}&size=${pageSize}`
   return this.http.get<Formation[]>(url)
     .pipe(tap(_ =>console.log('Formations paginé retourné')),
     catchError(this.handleError('findformationpaginé',[]))
     );
 }
 
-getFormation(id1:number , id2:number):Observable<Formation>{
- const url = `${UrlApi}/${id1}/formation/${id2}`;
+getFormation(id:number):Observable<Formation>{
+ const url = `${UrlApi2}/formation/${id}`;
  return this.http.get<Formation>(url).pipe(
- tap(_=>console.log(`formation retourné avec id1=${id1} et id2${id2}`)),
- catchError(this.handleError<Formation>(`getDemandeur id1=${id1} , id=${id2}`))
+ tap(_=>console.log(`formation retourné avec id1=${id} `)),
+ catchError(this.handleError<Formation>(`getFormation id1=${id}`))
   );
  }
 
- DeleteFormation(id1:number , id2:number):Observable<Formation>{
-  const url = `${UrlApi}/${id1}/formation/${id2}`;
+DeleteFormation(id:number):Observable<Formation>{
+  const url = `${UrlApi2}/formation/${id}`;
   return this.http.delete<Formation>(url).pipe(
-  tap(_=>console.log(`formation retourné avec id1=${id1} et id2${id2}`)),
-  catchError(this.handleError<Formation>(`deleteFormation id1=${id1} , id=${id2}`))
+  tap(_=>console.log(`formation retourné avec id=${id}`)),
+  catchError(this.handleError<Formation>(`deleteFormation id=${id}`))
    );
-  }
+}
 
-updateFormation(id1:number , id2:number , formation): Observable<any> {
-  const url = `${UrlApi}/${id1}/formation/${id2}`;
+updateFormation(id:number , formation): Observable<any> {
+  const url = `${UrlApi2}/formation/${id}`;
   return this.http.put(url, formation, httpOptions).pipe(
-    tap(_ => console.log(`Formation modifié id1=${id1} , id2=${id2}`)),
+    tap(_ => console.log(`Formation modifié id=${id}`)),
     catchError(this.handleError<any>('updateFormation'))
   );
 }
