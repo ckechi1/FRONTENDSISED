@@ -101,7 +101,7 @@ this.apiService.deleteDemandeEquivalence(this.id , DemandeEquiId)
   this.loadDemandeEquiPage();
 },  (err) => {
   console.log(err);
-  this.isLoadingResults=false
+  this.isLoadingResults=false;
 })
 
 }

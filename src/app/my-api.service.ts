@@ -5,6 +5,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Demandeur } from './demandeur/demandeur';
 import { Formation } from './formation/formation';
 import { DemandeEquivalence } from './demandeEquivalence/demandeEquivalence';
+import { DemandeurFormation } from './demandeurFormation/demandeurFormation';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -103,6 +104,48 @@ updateFormation(id:number , formation): Observable<any> {
     catchError(this.handleError<any>('updateFormation'))
   );
 }
+    /// demandeur formation service ///
+
+    addDemandeurFormation( id1:number , id2:number , demandeurFormation  ): Observable<any>{
+      console.log(` demandeurFormation retourné `);
+      const url = `${UrlApi}/${id1}/demandeurFormation/${id2}`;
+      return this.http.post<DemandeurFormation>(url,demandeurFormation,httpOptions)
+        .pipe(tap(demanformation=> console.log(`demandeurFormation ajouté avec id = ${id1} and id2 = ${id2}`)),
+        catchError(this.handleError<DemandeurFormation>('addDemandeurFormation'))
+      );
+    }
+
+  findDemandeurFormationPagination( id:number , pageNumber = 0, pageSize = 2):Observable<any> {
+    const url =`${UrlApi}/${id}/demandeurFormation?page=${pageNumber}&size=${pageSize}`
+    return this.http.get<DemandeurFormation[]>(url)
+      .pipe(tap(_ =>console.log(`demandeur Formation paginé retourné avec id ${id}`)),
+      catchError(this.handleError('findDemandeurFormationpaginé',[]))
+      );
+  }
+
+  getDemandeurFormation(id1:number , id2:number , id3:number ):Observable<DemandeurFormation>{
+   const url = `${UrlApi}/${id1}/demandeurFormation/${id2}/formation/${id3}`;
+   return this.http.get<DemandeurFormation>(url).pipe(
+   tap(_=>console.log(`demandeurformation retourné avec id1 = ${id1} , id2 = ${id1} ,  id3 = ${id3} `)),
+   catchError(this.handleError<DemandeurFormation>(`getDemandeurFormation id2=${id2}`))
+    );
+   }
+
+  DeleteDemandeurFormation(id1:number , id2:number , id3:number ):Observable<DemandeurFormation>{
+    const url = `${UrlApi}/${id1}/demandeurFormation/${id2}/formation/${id3}`;
+    return this.http.delete<DemandeurFormation>(url).pipe(
+    tap(_=>console.log(`DemandeurFormation supprimé  avec id= ${id2}`)),
+    catchError(this.handleError<DemandeurFormation>(`deleteFormation id= ${id2}`))
+     );
+  }
+
+  updateDemandeurFormation(id1:number , id2:number , id3:number , demandeurFormation ): Observable<any> {
+    const url = `${UrlApi}/${id1}/demandeurFormation/${id2}/formation/${id3}`;
+    return this.http.put(url, demandeurFormation, httpOptions).pipe(
+      tap(_ => console.log(`DemandeurFormation modifié avec id =${id2}`)),
+      catchError(this.handleError<any>('updateDemandeurFormation'))
+    );
+  }
 
     /// DemandeEquivalence service ///
 

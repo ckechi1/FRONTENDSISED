@@ -1,0 +1,44 @@
+<mat-dialog-content [formGroup]="form">
+
+  <div class="mat-form-field--inline">
+
+  <mat-form-field appearance="fill">
+      <input matInput placeholder="Nom de la formation " formControlName="nomFormation">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+      <input matInput placeholder=" mention de la fromation " formControlName="mention">
+  </mat-form-field>
+
+ </div>
+ <div class="mat-form-field--inline">
+
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="Année de la promotion" formControlName="promotion">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <input matInput placeholder="Pays de la formation " formControlName="pays">
+</mat-form-field>
+
+</div>
+<div class="mat-form-field--inline">
+
+<mat-form-field appearance="fill">
+  <input matInput placeholder="Date d'Obtention" formControlName="dateObtention" [matDatepicker]="picker">
+  <mat-label>Choisir la date de d'obtention</mat-label>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <input matInput placeholder="etablissement de la formation" formControlName="etablissement">
+</mat-form-field>
+
+</div>
+
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between ">
+  <button class="mat-raised-button mat-primary"(click)="save()" >Valider</button>
+  <button mat-flat-button color="warn" (click)="close()">Annuler</button>
+</mat-dialog-actions>

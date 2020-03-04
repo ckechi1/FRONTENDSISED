@@ -1,0 +1,32 @@
+.button-size {
+  position:absolute;
+  transition: .5s ease;
+  top: 3%;
+  left: 55%;
+}
+
+.input-headline {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+}
+
+.mat-form-field {
+  display: block;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+  margin-right: 10px;
+}
