@@ -1,19 +1,23 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatSort, MatTable } from '@angular/material';
+import { FormationDataSource } from 'src/app/formation/formation/formation/formation-datasource';
+import { Formation } from 'src/app/formation/formation';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-demandeur-formation-add-edit',
   templateUrl: './demandeur-formation-add-edit.component.html',
   styleUrls: ['./demandeur-formation-add-edit.component.css']
 })
 export class DemandeurFormationAddEditComponent implements OnInit {
+  selectedValue = null ;
 
-  demandeEquivalence : any;
+  formationData : Array<any> ;
   public demandeurId : number;
   public formationId : number;
+
 
   form :FormGroup;
   id:number=null;
@@ -32,6 +36,8 @@ constructor(private router: Router, private route: ActivatedRoute,
 
             this.id=data.id; // assign formation.id from dialog.id  to formation id
             this.demandeurId = data.demandeurId;
+            this.formationData = data.formationData;
+            console.log(this.formationData);
             //  console.log(`demandeurId=${this.demandeurId} , FormationId=${this.id}`);
             this.form = fb.group({
             dateObtention: [new Date(data.dateObtention), Validators.required],
@@ -52,6 +58,15 @@ constructor(private router: Router, private route: ActivatedRoute,
   ngOnInit() {
 
   }
+
+selectChange($event){ // get the selected option id and assign it to formationId
+ console.log(` my formatiovalue = ` , $event);
+ this.formationId = $event;
+}
+
+onchange(formationid){
+  console.log(formationid);
+}
 
 onformSubmit(form:NgForm){
   this.isloadingResults = true;

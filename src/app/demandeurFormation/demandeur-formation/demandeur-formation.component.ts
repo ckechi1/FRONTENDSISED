@@ -6,6 +6,8 @@ import { MyApiService } from 'src/app/my-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { DemandeurFormationAddEditComponent } from '../demandeur-formation-add-edit/demandeur-formation-add-edit.component';
+import { Formation } from 'src/app/formation/formation';
+import { FormationDataSource } from 'src/app/formation/formation/formation/formation-datasource';
 
 @Component({
   selector: 'app-demandeur-formation',
@@ -19,6 +21,11 @@ export class DemandeurFormationComponent implements OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<DemandeurFormation>;
   dataSource: DemandeurFormationDataSource;
+
+  dataSourceFormation : FormationDataSource;
+
+  public formation: Array<any>;
+
 
   @Input()
   demandeurFormation:DemandeurFormation[];
@@ -34,6 +41,9 @@ export class DemandeurFormationComponent implements OnInit {
   ngOnInit() {
      this.dataSource = new DemandeurFormationDataSource(this.apiService);
      this.dataSource.loadDemandeurFormation(this.id, 0 , 2);
+
+     this.getFormationData();
+
    }
 
    ngAfterViewInit() {
@@ -45,10 +55,17 @@ export class DemandeurFormationComponent implements OnInit {
 
 
    loadDemandeurFormationPage() {
-  //  const id  = this.route.snapshot.paramMap.get('id')
     this.dataSource.loadDemandeurFormation(this.id , this.paginator.pageIndex, this.paginator.pageSize);
    }
 
+  getFormationData(){
+    this.apiService.GetAllFormation().subscribe((data) => {
+      if (data) {
+         this.formation = data;
+      }
+     //  console.log(this.formation);
+     });
+  }
 
  addDemandeurFormation(){
   const dialogConfig = new MatDialogConfig();
@@ -58,7 +75,9 @@ export class DemandeurFormationComponent implements OnInit {
   dialogConfig.height='330px';
  // dialogConfig.position={ right: '30px', bottom: '130px' }
   const demandeurId = this.id ;
-  let data = { demandeurId };
+  const formationData = this.formation;
+ // console.log(`list side `, formationData)
+  let data = { demandeurId , formationData };
   dialogConfig.data = data
   const dialogRef = this.dialog.open(DemandeurFormationAddEditComponent,dialogConfig);
 
@@ -77,16 +96,17 @@ dialogConfig.autoFocus = true;
 dialogConfig.width='600px';
 dialogConfig.height='330px';
 const demandeurId = this.id ;
-let data = { demandeurId , id , nomFormation , mention, promotion , pays , etablissement , dateObtention };
+const formationData = this.formation;
+
+let data = { formationData, demandeurId , id , nomFormation , mention, promotion , pays , etablissement , dateObtention };
 dialogConfig.data = data;
 const dialogRef = this.dialog.open(DemandeurFormationAddEditComponent,dialogConfig);
 dialogRef.beforeClosed().subscribe(() => {
 
   this.loadDemandeurFormationPage();
 
-});
-
-}
+   });
+  }
 
 deleteDemandeurFormation( demandeurFormationId:number , formationId:number ){
 this.isLoadingResults = true;
@@ -94,11 +114,9 @@ this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId , format
 .subscribe(() => {
   this.isLoadingResults=false;
   this.loadDemandeurFormationPage();
-},  (err) => {
+  },(err) => {
   console.log(err);
   this.isLoadingResults=false;
-})
-
-}
-
+   })
+  }
 }

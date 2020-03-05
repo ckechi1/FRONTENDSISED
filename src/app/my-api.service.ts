@@ -63,6 +63,13 @@ deleteDemandeur(id: any): Observable<Demandeur> {
   }
 
    /// formation service ///
+GetAllFormation(){
+  const url = `${UrlApi2}/formations`
+  return this.http.get<Formation[]>(url)
+    .pipe(tap(_ =>console.log('Formations paginé retourné')),
+    catchError(this.handleError('findformationpaginé',[]))
+    );
+}
 
 addFormation(formation ): Observable<any>{
     console.log(` formation retourné `);

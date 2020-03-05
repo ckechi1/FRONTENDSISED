@@ -29,16 +29,15 @@ export class FormationDataSource extends DataSource<Formation> {
   sort: MatSort;
 
   private formationSubject = new BehaviorSubject<Formation[]>([]);
-
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
   public loading$ = this.loadingSubject.asObservable();
-
   public totalElements : number;
+  public formationObject : any;
 
   constructor(private apiService: MyApiService) {
 
      super();
+
   }
 
   loadFormation(pageIndex:number, pageSize:number) {
@@ -48,8 +47,10 @@ export class FormationDataSource extends DataSource<Formation> {
             finalize(() => this.loadingSubject.next(false))
         )
         .subscribe(Result =>{
-        //  console.log(Result); // demandeur json object
+        //  console.log(Result); // formation json object
           this.totalElements = Result.totalElements; //   console.log(this.totalElements); // number of elements in my array
+          this.formationObject = Result.content
+        //  console.log(this.formationObject)
           this.formationSubject.next(Result.content)});
   }
 

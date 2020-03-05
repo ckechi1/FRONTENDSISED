@@ -31,10 +31,10 @@ export class FormationAddComponent implements OnInit {
   constructor(private route:ActivatedRoute , private router: Router,
               private api: MyApiService, private dialog: MatDialog ) {}
 
-
   ngOnInit() {
     this.dataSource = new FormationDataSource(this.api);
     this.dataSource.loadFormation(0 , 3);
+
   }
 
   ngAfterViewInit() {

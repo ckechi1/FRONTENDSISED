@@ -25,6 +25,7 @@ export class FormationComponent implements AfterViewInit, OnInit {
 
   @Input()
   formation:Formation[];
+
   public id :any = +this.route.snapshot.paramMap.get('id'); // get the demandeur id
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -43,18 +44,15 @@ export class FormationComponent implements AfterViewInit, OnInit {
     this.dataSource = new FormationDataSource(this.apiService);
     this.dataSource.loadFormation( 0 , 3);
 
+    console.log(this.dataSource.totalElements);
   }
 
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.table.dataSource = this.dataSource;
-    this.paginator.page
-    .pipe(
-        tap(() => this.loadFormationPage() )
-    )
+    this.paginator.page.pipe(tap(() => this.loadFormationPage()))
     .subscribe();
-
   }
 
 

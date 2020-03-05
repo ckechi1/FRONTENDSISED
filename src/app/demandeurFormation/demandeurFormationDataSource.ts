@@ -49,7 +49,7 @@ export class DemandeurFormationDataSource extends DataSource<DemandeurFormation>
             finalize(() => this.loadingSubject.next(false))
         )
           .subscribe(Result =>{
-          console.log(Result); // demandeurFormation json object
+        //  console.log(Result); // demandeurFormation json object
           this.totalElements = Result.totalElements; // console.log(this.totalElements); // number of elements in my array
           this.demandeurFormationSubject.next(Result.content)});
   }
