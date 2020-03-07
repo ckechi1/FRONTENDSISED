@@ -1,4 +1,8 @@
-import {MatInputModule,MatSlideToggleModule,MatPaginatorModule,MatProgressSpinnerModule,MatSortModule,MatTableModule,MatIconModule,MatButtonModule,MatCardModule,MatFormFieldModule, MatBadgeModule, MatGridListModule, MatSelectModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatTooltipModule } from "@angular/material";
+import {MatInputModule,MatSlideToggleModule,MatPaginatorModule,
+MatProgressSpinnerModule,MatSortModule,MatTableModule,MatIconModule,
+MatButtonModule,MatCardModule,MatFormFieldModule, MatBadgeModule,
+MatGridListModule, MatSelectModule, MatRadioModule, MatDatepickerModule,
+ MatNativeDateModule, MatChipsModule, MatTooltipModule } from "@angular/material";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';

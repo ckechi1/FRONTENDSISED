@@ -1,23 +1,25 @@
 import { Component, OnInit, Inject, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm  , FormControl  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatSort, MatTable } from '@angular/material';
 import { FormationDataSource } from 'src/app/formation/formation/formation/formation-datasource';
 import { Formation } from 'src/app/formation/formation';
 import { tap } from 'rxjs/operators';
+import { runInThisContext } from 'vm';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 @Component({
   selector: 'app-demandeur-formation-add-edit',
   templateUrl: './demandeur-formation-add-edit.component.html',
   styleUrls: ['./demandeur-formation-add-edit.component.css']
 })
 export class DemandeurFormationAddEditComponent implements OnInit {
-  selectedValue = null ;
 
   formationData : Array<any> ;
+  nomFromSelect : string ;
   public demandeurId : number;
   public formationId : number;
-
 
   form :FormGroup;
   id:number=null;
@@ -34,7 +36,7 @@ constructor(private router: Router, private route: ActivatedRoute,
             private dialogRef: MatDialogRef<DemandeurFormationAddEditComponent>,
            @Inject(MAT_DIALOG_DATA) data){
 
-            this.id=data.id; // assign formation.id from dialog.id  to formation id
+            this.id=data.id; // assign Demandeurformation.id from dialog.id  to formation id
             this.demandeurId = data.demandeurId;
             this.formationData = data.formationData;
             console.log(this.formationData);
@@ -57,16 +59,30 @@ constructor(private router: Router, private route: ActivatedRoute,
 
   ngOnInit() {
 
+
   }
 
-selectChange($event){ // get the selected option id and assign it to formationId
- console.log(` my formatiovalue = ` , $event);
- this.formationId = $event;
+selectChange($event){ // get the selected option name and do stuff with it
+ //console.log(` nomFromSelect = ` , $event);
+ this.nomFromSelect = $event;
+ this.formationData.forEach(obj => {
+   if (obj['nom']==this.nomFromSelect){ // compare the value i get nom from select and do stuff and assign to formationId
+    let idValue = obj['id'];
+    this.formationId = idValue;
+   }
+ })
+
+
 }
 
-onchange(formationid){
-  console.log(formationid);
+ get formation() : string {
+//   //this.nom = this.jsonformationSelected['nom'].nom;
+ return this.form ? this.form.get('nomFormation').value : '';
+//   return this.form.controls['nomFormation'].setValue(this.jsonformationSelected['nom']);
 }
+
+
+
 
 onformSubmit(form:NgForm){
   this.isloadingResults = true;
@@ -82,7 +98,7 @@ onformSubmit(form:NgForm){
           },
         )
     } else {
-      this.api.updateDemandeurFormation(this.demandeurId, this.formationId , this.id ,form)
+      this.api.updateDemandeurFormation(this.demandeurId, this.id ,this.formationId ,form)
       .subscribe(res => {
        this.isloadingResults = false;
        }, (err) => {

@@ -138,8 +138,8 @@ updateFormation(id:number , formation): Observable<any> {
     );
    }
 
-  DeleteDemandeurFormation(id1:number , id2:number , id3:number ):Observable<DemandeurFormation>{
-    const url = `${UrlApi}/${id1}/demandeurFormation/${id2}/formation/${id3}`;
+  DeleteDemandeurFormation(id1:number , id2:number ):Observable<DemandeurFormation>{
+    const url = `${UrlApi}/${id1}/demandeurFormation/${id2}`;
     return this.http.delete<DemandeurFormation>(url).pipe(
     tap(_=>console.log(`DemandeurFormation supprimé  avec id= ${id2}`)),
     catchError(this.handleError<DemandeurFormation>(`deleteFormation id= ${id2}`))

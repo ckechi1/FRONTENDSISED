@@ -31,6 +31,7 @@ export class DemandeurFormationComponent implements OnInit {
   demandeurFormation:DemandeurFormation[];
   public id :any = +this.route.snapshot.paramMap.get('id'); // get the demandeur id
 
+
   displayedColumns : string[] =  ['id', 'nomFormation','mention', 'promotion','pays','dateObtention', 'etablissement','update','delete'];
   isLoadingResults = true;
 
@@ -108,9 +109,9 @@ dialogRef.beforeClosed().subscribe(() => {
    });
   }
 
-deleteDemandeurFormation( demandeurFormationId:number , formationId:number ){
+deleteDemandeurFormation( demandeurFormationId:number ){
 this.isLoadingResults = true;
-this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId , formationId)
+this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId )
 .subscribe(() => {
   this.isLoadingResults=false;
   this.loadDemandeurFormationPage();
