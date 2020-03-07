@@ -154,6 +154,14 @@ updateFormation(id:number , formation): Observable<any> {
     );
   }
 
+  updateDemandeurFormationWithNoFormationId(id1:number , id2:number , demandeurFormation ): Observable<any> {
+    const url = `${UrlApi}/${id1}/demandeurFormation/${id2}`;
+    return this.http.put(url, demandeurFormation, httpOptions).pipe(
+      tap(_ => console.log(`DemandeurFormation modifié avec id =${id2}`)),
+      catchError(this.handleError<any>('updateDemandeurFormation'))
+    );
+  }
+
     /// DemandeEquivalence service ///
 
 getDemandeEquivalencePagination(id:number , pageNumber = 0, pageSize = 2):Observable<any[]>{

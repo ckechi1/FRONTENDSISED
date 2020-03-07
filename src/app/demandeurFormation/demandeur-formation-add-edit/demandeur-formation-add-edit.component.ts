@@ -59,7 +59,6 @@ constructor(private router: Router, private route: ActivatedRoute,
 
   ngOnInit() {
 
-
   }
 
 selectChange($event){ // get the selected option name and do stuff with it
@@ -97,7 +96,14 @@ onformSubmit(form:NgForm){
             this.isloadingResults=false;
           },
         )
-    } else {
+    } else if (this.formationId == null ){ // in case the formationId is null i will update anyway , this is a work-around for the selected item not sending the id
+       this.api.updateDemandeurFormationWithNoFormationId(this.demandeurId , this.id , form)
+       .subscribe(res => {
+         this.isloadingResults = false;
+       }, (err) => {
+         console.log(err);
+       })
+    }else {
       this.api.updateDemandeurFormation(this.demandeurId, this.id ,this.formationId ,form)
       .subscribe(res => {
        this.isloadingResults = false;
@@ -107,6 +113,7 @@ onformSubmit(form:NgForm){
     })
   }
  }
+
 
  save() {
   this.dialogRef.close(this.onformSubmit(this.form.value));
