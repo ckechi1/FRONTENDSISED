@@ -12,12 +12,14 @@
           <mat-label>nom</mat-label>
             <input matInput placeholder="Nom du demandeur" formControlName="nom" required>
             <mat-error>entrer le nom </mat-error>
+            <mat-icon color="primary" matSuffix>perm_identity</mat-icon>
           </mat-form-field>
 
          <mat-form-field class="example-full-width" appearance="outline" >
           <mat-label>prenom</mat-label>
           <input matInput placeholder="prenom du demandeur" formControlName="prenom" required >
           <mat-error>entrer le prenom </mat-error>
+          <mat-icon color="primary" matSuffix>perm_identity</mat-icon>
          </mat-form-field>
 
          <mat-form-field appearance="outline" >
@@ -27,6 +29,7 @@
               <mat-option value="masculin">masculin</mat-option>
              </mat-select>
           <mat-error>entrer le genre </mat-error>
+          <mat-icon color="primary" matSuffix>wc</mat-icon>
          </mat-form-field>
 
     </div>
@@ -37,6 +40,7 @@
           <mat-label>Nationalité</mat-label>
             <input matInput placeholder="nationalité du demandeur" formControlName="nationalite">
             <mat-error>entrer la nationalité </mat-error>
+            <mat-icon color="primary" matSuffix>public</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="outline" >
@@ -46,12 +50,14 @@
               <mat-option value="fonctionnaire">fonctionnaire</mat-option>
             </mat-select>
             <mat-error>entrer le status </mat-error>
+            <mat-icon color="primary" matSuffix>people</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>numéro de la Piece D'identite</mat-label>
             <input matInput placeholder="numero de la Piece D'identite" formControlName="numeroPieceDidentite">
             <mat-error>entrer le numero de la piece d'identité </mat-error>
+            <mat-icon color="primary" matSuffix>chrome_reader_mode</mat-icon>
           </mat-form-field>
 
      </div>
@@ -59,10 +65,10 @@
      <div class="mat-form-field--inline">
 
           <mat-form-field class="example-full-width" appearance="outline">
-            <input matInput placeholder="date de Naissance" formControlName="dateNaissance" [matDatepicker]="picker">
+            <input  matInput placeholder="date de Naissance" formControlName="dateNaissance" [matDatepicker]="picker">
             <mat-label>Choisir une date de naissance</mat-label>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker-toggle  matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary" ></mat-datepicker>
             <mat-error>entrer la date de naissance </mat-error>
           </mat-form-field>
 
@@ -70,11 +76,13 @@
             <mat-label>lieu de Naissance</mat-label>
             <input matInput placeholder="lieu de Naissance" formControlName="lieuNaissance">
             <mat-error>entrer le lieu de naissance </mat-error>
+            <mat-icon color="primary" matSuffix>place</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>l'adresse</mat-label>
+            <mat-label>l'adresse </mat-label>
             <input matInput placeholder="l'adresse" formControlName="adresse">
+            <mat-icon  color="primary" matSuffix>house</mat-icon>
             <mat-error>entrer l'adresse </mat-error>
           </mat-form-field>
 
@@ -85,11 +93,13 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>numéro de telephone</mat-label>
             <input matInput placeholder=" le telephone" formControlName="telephone">
+            <mat-icon color="primary" matSuffix>phone</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>l'email</mat-label>
             <input matInput placeholder="email" formControlName="email">
+            <mat-icon color="primary" matSuffix>email</mat-icon>
           </mat-form-field>
 
      </div>
