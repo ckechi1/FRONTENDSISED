@@ -5,9 +5,8 @@ import { MatTable, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@an
 import { MyApiService } from 'src/app/my-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { DemandeurFormationAddEditComponent } from '../demandeur-formation-add-edit/demandeur-formation-add-edit.component';
-import { Formation } from 'src/app/formation/formation';
-import { FormationDataSource } from 'src/app/formation/formation/formation/formation-datasource';
+import { DemandeurFormationEditComponent } from '../demandeur-formation-edit/demandeur-formation-edit.component';
+import { DemandeurFormationAddComponent } from '../demandeur-formation-add/demandeur-formation-add.component';
 
 @Component({
   selector: 'app-demandeur-formation',
@@ -21,16 +20,13 @@ export class DemandeurFormationComponent implements OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<DemandeurFormation>;
   dataSource: DemandeurFormationDataSource;
-
-  dataSourceFormation : FormationDataSource;
-
   public formation: Array<any>;
 
 
-  @Input()
-  demandeurFormation:DemandeurFormation[];
-  public id :any = +this.route.snapshot.paramMap.get('id'); // get the demandeur id
+   @Input()
+   demandeurFormation:DemandeurFormation[];
 
+  public id :any = +this.route.snapshot.paramMap.get('id'); // get the demandeur id
 
   displayedColumns : string[] =  ['id', 'nomFormation','mention', 'promotion','pays','dateObtention', 'etablissement','update','delete'];
   isLoadingResults = true;
@@ -41,7 +37,7 @@ export class DemandeurFormationComponent implements OnInit {
 
   ngOnInit() {
      this.dataSource = new DemandeurFormationDataSource(this.apiService);
-     this.dataSource.loadDemandeurFormation(this.id, 0 , 2);
+     this.dataSource.loadDemandeurFormation(this.id, 0 , 3);
 
      this.getFormationData();
 
@@ -77,31 +73,33 @@ export class DemandeurFormationComponent implements OnInit {
  // dialogConfig.position={ right: '30px', bottom: '130px' }
   const demandeurId = this.id ;
   const formationData = this.formation;
- // console.log(`list side `, formationData)
-  let data = { demandeurId , formationData };
-  dialogConfig.data = data
-  const dialogRef = this.dialog.open(DemandeurFormationAddEditComponent,dialogConfig);
 
+  let data = { demandeurId , formationData };
+  console.log(data);
+  dialogConfig.data = data;
+  const dialogRef = this.dialog.open(DemandeurFormationAddComponent,dialogConfig);
   dialogRef.afterClosed().subscribe(() => {
-    this.loadDemandeurFormationPage();
+  this.loadDemandeurFormationPage();
 
   });
 }
 
 
 // this editformation button redirect to formationEdit therefore all config related to the dialog goes in there
-editDemandeurFormation({ id , nomFormation , mention, promotion , pays , etablissement , dateObtention }:DemandeurFormation) {
+editDemandeurFormation(demandeurFormation:DemandeurFormation) {
 const dialogConfig = new MatDialogConfig();
 dialogConfig.disableClose = true;
 dialogConfig.autoFocus = true;
 dialogConfig.width='600px';
 dialogConfig.height='330px';
-const demandeurId = this.id ;
 const formationData = this.formation;
 
-let data = { formationData, demandeurId , id , nomFormation , mention, promotion , pays , etablissement , dateObtention };
+// console.log(demandeurFormation.demandeur.id);
+// console.log(demandeurFormation.formation.id);
+
+let data = { formationData , demandeurFormation };
 dialogConfig.data = data;
-const dialogRef = this.dialog.open(DemandeurFormationAddEditComponent,dialogConfig);
+const dialogRef = this.dialog.open(DemandeurFormationEditComponent,dialogConfig);
 dialogRef.beforeClosed().subscribe(() => {
 
   this.loadDemandeurFormationPage();
@@ -109,7 +107,7 @@ dialogRef.beforeClosed().subscribe(() => {
    });
   }
 
-deleteDemandeurFormation( demandeurFormationId:number ){
+deleteDemandeurFormation(demandeurFormationId:number){
 this.isLoadingResults = true;
 this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId )
 .subscribe(() => {

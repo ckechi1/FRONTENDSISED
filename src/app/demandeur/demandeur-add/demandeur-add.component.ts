@@ -20,16 +20,6 @@ import { Demandeur } from '../demandeur';
 })
 export class DemandeurAddComponent implements OnInit {
 
-  // genre = [
-  //   {id: 1, name: "masculin"},
-  //   {id: 2, name: "feminin"},
-  // ];
-
-  // status = [
-  //   {id: 1, name: "stagiaire"},
-  //   {id: 2, name: "fonctionnaire"},
-  // ];
-
   formulaireDemandeur :FormGroup;
   nom ='';
   prenom='';

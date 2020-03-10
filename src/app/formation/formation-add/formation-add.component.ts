@@ -33,7 +33,7 @@ export class FormationAddComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new FormationDataSource(this.api);
-    this.dataSource.loadFormation(0 , 3);
+    this.dataSource.loadFormation(0 , 5);
 
   }
 

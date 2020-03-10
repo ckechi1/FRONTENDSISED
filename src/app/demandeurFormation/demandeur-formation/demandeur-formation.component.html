@@ -13,7 +13,7 @@
 
     <ng-container matColumnDef="nomFormation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>nom Formation</th>
-      <td mat-cell *matCellDef="let row">{{row.nomFormation}}</td>
+      <td mat-cell *matCellDef="let row">{{row.formation.nom}} {{row.formation.specialite}}</td>
     </ng-container>
 
     <!-- Name Column -->

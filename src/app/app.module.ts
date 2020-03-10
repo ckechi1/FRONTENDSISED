@@ -35,7 +35,8 @@ import { FormationEditComponent } from './formation/formation-edit/formation-edi
 import { DateAdapter } from '@angular/material';
 import { CustomDateAdapter } from './customDateAdapter';
 import { DemandeurFormationComponent } from './demandeurFormation/demandeur-formation/demandeur-formation.component';
-import { DemandeurFormationAddEditComponent } from './demandeurFormation/demandeur-formation-add-edit/demandeur-formation-add-edit.component';
+import { DemandeurFormationEditComponent } from './demandeurFormation/demandeur-formation-edit/demandeur-formation-edit.component';
+import { DemandeurFormationAddComponent } from './demandeurFormation/demandeur-formation-add/demandeur-formation-add.component';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { DemandeurFormationAddEditComponent } from './demandeurFormation/demande
     LogoutComponent,
     LoginComponent, SidenavComponent,
     FormationAddComponent, FormationComponent, FormationEditComponent ,
-    DemandeEquivalenceComponent, DemandeEquivalenceAddComponent, DemandeurFormationComponent, DemandeurFormationAddEditComponent
+    DemandeEquivalenceComponent, DemandeEquivalenceAddComponent, DemandeurFormationComponent, DemandeurFormationEditComponent, DemandeurFormationAddComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -104,7 +105,8 @@ import { DemandeurFormationAddEditComponent } from './demandeurFormation/demande
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [FormationEditComponent , DemandeEquivalenceAddComponent , DemandeurFormationAddEditComponent]
+  entryComponents: [FormationEditComponent , DemandeEquivalenceAddComponent ,
+                    DemandeurFormationEditComponent , DemandeurFormationAddComponent ]
 
 })
 export class AppModule { }

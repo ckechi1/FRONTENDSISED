@@ -3,10 +3,9 @@
   <div class="mat-form-field--inline">
   <mat-form-field appearance="fill">
    <!--   <input matInput placeholder="Nom de la formation " formControlName="nomFormation"> -->
-     <mat-select formControlName="nomFormation" (ngModelChange)="selectChange($event)" >
+     <mat-select formControlName="formationId" (ngModelChange)="selectChange($event)" >
 
-       <mat-option *ngFor="let formation of formationData"
-        [value]="formation.nom" (selected)="formation == nomFormation" >
+       <mat-option *ngFor="let formation of formationData" [value]="formation.id" >
         {{formation.nom}} , {{formation.specialite}}</mat-option>
      </mat-select>
   </mat-form-field>

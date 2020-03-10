@@ -80,7 +80,7 @@ addFormation(formation ): Observable<any>{
     );
   }
 
-findFormationPagination(pageNumber = 0, pageSize = 2):Observable<any> {
+findFormationPagination(pageNumber = 0, pageSize = 3):Observable<any> {
   const url = `${UrlApi2}/formation?page=${pageNumber}&size=${pageSize}`
   return this.http.get<Formation[]>(url)
     .pipe(tap(_ =>console.log('Formations paginé retourné')),
@@ -122,7 +122,7 @@ updateFormation(id:number , formation): Observable<any> {
       );
     }
 
-  findDemandeurFormationPagination( id:number , pageNumber = 0, pageSize = 2):Observable<any> {
+  findDemandeurFormationPagination( id:number , pageNumber = 0, pageSize = 3):Observable<any> {
     const url =`${UrlApi}/${id}/demandeurFormation?page=${pageNumber}&size=${pageSize}`
     return this.http.get<DemandeurFormation[]>(url)
       .pipe(tap(_ =>console.log(`demandeur Formation paginé retourné avec id ${id}`)),

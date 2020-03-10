@@ -74,7 +74,6 @@ export class FormationComponent implements AfterViewInit, OnInit {
       let data = { demandeurId };
       dialogConfig.data = data
       const dialogRef = this.dialog.open(FormationEditComponent,dialogConfig);
-
       dialogRef.afterClosed().subscribe(() => {
         this.loadFormationPage();
 
@@ -92,7 +91,6 @@ export class FormationComponent implements AfterViewInit, OnInit {
     const demandeurId = this.id ;
     let data = { demandeurId , id , nom , specialite , niveau , estDiplomate };
     dialogConfig.data = data;
-
     const dialogRef = this.dialog.open(FormationEditComponent,dialogConfig);
     dialogRef.beforeClosed().subscribe(() => {
 

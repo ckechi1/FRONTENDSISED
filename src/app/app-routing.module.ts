@@ -13,7 +13,7 @@ import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquival
 import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
 import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
 import { DemandeurFormationComponent } from './demandeurFormation/demandeur-formation/demandeur-formation.component';
-import { DemandeurFormationAddEditComponent } from './demandeurFormation/demandeur-formation-add-edit/demandeur-formation-add-edit.component';
+import { DemandeurFormationEditComponent } from './demandeurFormation/demandeur-formation-edit/demandeur-formation-edit.component';
 const routes: Routes = [
 
    {path: 'login', component: LoginComponent},
@@ -39,7 +39,7 @@ const routes: Routes = [
    {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
    /* --- Demandeurformation Association routers --- */
    {path :'DemandeurFormation',component:DemandeurFormationComponent,data:{title:'List of DemandeurFormation'}},
-   {path :'DemandeurFormation-Add-Edit',component:DemandeurFormationAddEditComponent,data:{title:'add edit DemandeurFormationAddEdit'}},
+   {path :'DemandeurFormation-Edit',component:DemandeurFormationEditComponent,data:{title:'add edit DemandeurFormationAddEdit'}},
    /* --- Demande equivalence routers --- */
    {path :'demandeEquivalence',component:DemandeEquivalenceComponent,data:{title:'List of demandeEquivalence'}},
    {path :'demandeEquivalence-add',component:DemandeEquivalenceAddComponent,data:{title:'add demandeEquivalence'}},
