@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
 import { DemandeEquivalence }from '../../demandeEquivalence';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { NotificationService } from '../../../shared/notification.service';
+
 @Component({
   selector: 'app-demande-equivalence-add',
   templateUrl: './demande-equivalence-add.component.html',
@@ -23,7 +25,7 @@ export class DemandeEquivalenceAddComponent {
   diplomeDemande='';
   isloadingResults=false;
 
-constructor(private router: Router, private route: ActivatedRoute,
+constructor(private router: Router, private route: ActivatedRoute, private notificationService: NotificationService,
             private api: MyApiService,private fb: FormBuilder,
             private dialogRef: MatDialogRef<DemandeEquivalenceAddComponent>,
            @Inject(MAT_DIALOG_DATA) data){
@@ -57,6 +59,8 @@ onformSubmit(form:NgForm){
         .subscribe(
           res=> {
             this.isloadingResults=false;
+            this.notificationService.success(' : : Accomplie avec succès ');
+            this.dialogRef.close();
           },(err) => {
             console.log(err);
             this.isloadingResults=false;
@@ -66,7 +70,9 @@ onformSubmit(form:NgForm){
       this.api.updateDemandeEquivalence(this.demandeurId, this.id,form)
       .subscribe(res => {
        this.isloadingResults = false;
-       }, (err) => {
+       this.notificationService.success(' : : Accomplie avec succès ');
+       this.dialogRef.close();
+      }, (err) => {
         console.log(err);
          this.isloadingResults = false;
     })
@@ -74,11 +80,10 @@ onformSubmit(form:NgForm){
  }
 
  save() {
-  this.dialogRef.close(this.onformSubmit(this.form.value));
+  this.onformSubmit(this.form.value);
 }
 
 close() {
-
   this.dialogRef.close();
 }
 

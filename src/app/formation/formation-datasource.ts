@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map, catchError, finalize } from 'rxjs/operators';
 import { Observable, of as observableOf, merge, BehaviorSubject, of } from 'rxjs';
-import { Formation } from'../../formation';
+import { Formation } from'./formation';
 import { MyApiService } from 'src/app/my-api.service';
 
 /**

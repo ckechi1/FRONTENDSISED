@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from '../../my-api.service';
-import {  FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { NotificationService } from '../../shared/notification.service';
 @Component({
   selector: 'app-demandeur-edit',
   templateUrl: './demandeur-edit.component.html',
@@ -25,6 +26,7 @@ export class DemandeurEditComponent implements OnInit {
   isloadingResults=false;
 
   constructor(private router: Router, private route: ActivatedRoute,
+              private notificationService : NotificationService,
               private api: MyApiService, private formBuilder: FormBuilder, ) { }
 
   ngOnInit() {
@@ -72,6 +74,7 @@ export class DemandeurEditComponent implements OnInit {
     this.api.updateDemandeur(this.id,form)
     .subscribe(res => {
       let id = res['id'];
+      this.notificationService.success(' : : Accomplie avec succès ');
       this.isloadingResults = false;
       this.router.navigate(['/demandeur-detail',id]);
     }, (err) => {

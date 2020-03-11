@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
-import { FormationComponent } from './formation/formation/formation/formation.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component'
 import { DemandeEquivalenceAddComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence-add/demande-equivalence-add.component';
 import { FormationEditComponent } from './formation/formation-edit/formation-edit.component';
@@ -36,7 +35,6 @@ const routes: Routes = [
    /* --- formation routers --- */
    {path :'demandeur-add/:id/:id ', component:FormationEditComponent , data:{title:'Edit formation '}},
    {path :'formation-add', component:FormationAddComponent , data:{title:'Add formation '}},
-   {path :'formation',component:FormationComponent,data:{title:'List of formations'}},
    /* --- Demandeurformation Association routers --- */
    {path :'DemandeurFormation',component:DemandeurFormationComponent,data:{title:'List of DemandeurFormation'}},
    {path :'DemandeurFormation-Edit',component:DemandeurFormationEditComponent,data:{title:'add edit DemandeurFormationAddEdit'}},

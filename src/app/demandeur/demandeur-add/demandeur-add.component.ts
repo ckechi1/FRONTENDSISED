@@ -4,6 +4,7 @@ import { MyApiService } from '../../my-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Demandeur } from '../demandeur';
+import { NotificationService } from '../../shared/notification.service'
 ///////////////////////////////////////////////*******************/////////////////////////////////////////////////
 /** erreur handler when invalid control is dirty, touched, or submitted. */
 // export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -35,7 +36,8 @@ export class DemandeurAddComponent implements OnInit {
   isloadingResults=false;
   //matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute,private router: Router, private api: MyApiService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private router: Router, private notificationService : NotificationService ,
+              private api: MyApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -63,12 +65,13 @@ export class DemandeurAddComponent implements OnInit {
         const id = res.id;
         console.log(`id in add is ${id}`);
         this.isloadingResults = false;
+        this.notificationService.success(' : : Accomplie avec succès ');
        // this.router.navigate(['/demandeur-detail', this.id]);
-       this.router.navigate(['/demandeurs']);
+      //  this.router.navigate(['/demandeurs']);
       }, (err) => {
         console.log(err);
         this.isloadingResults = false;
       });
-}
+  }
 
 }

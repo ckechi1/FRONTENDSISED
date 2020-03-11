@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatSort, MatTable } from '@angular/material';
-
+import { NotificationService } from '../../shared/notification.service';
 @Component({
   selector: 'app-demandeur-formation-edit',
   templateUrl: './demandeur-formation-edit.component.html',
@@ -30,6 +30,7 @@ export class DemandeurFormationEditComponent implements OnInit {
 
 constructor(private router: Router, private route: ActivatedRoute,
             private api: MyApiService,private fb: FormBuilder,
+            private notificationService : NotificationService,
             private dialogRef: MatDialogRef<DemandeurFormationEditComponent>,
            @Inject(MAT_DIALOG_DATA) data :any ){
 
@@ -70,7 +71,9 @@ onformSubmit(form:NgForm){
       this.api.updateDemandeurFormation(this.demandeurId, this.id ,this.formationId ,form)
       .subscribe(res => {
        this.isloadingResults = false;
-       }, (err) => {
+       this.notificationService.success(' : : Accomplie avec succès ');
+       this.dialogRef.close();
+      }, (err) => {
         console.log(err);
          this.isloadingResults = false;
     })

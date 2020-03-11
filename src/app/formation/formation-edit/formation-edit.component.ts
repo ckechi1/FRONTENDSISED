@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup, NgForm, Form } from '@angular/forms
 import { Formation } from '../formation';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyApiService } from 'src/app/my-api.service';
-import { FormationComponent} from '../formation/formation/formation.component';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-formation-edit',
@@ -25,6 +25,7 @@ export class FormationEditComponent implements OnInit {
   isloadingResults=false;
 
   constructor(private router: Router, private route: ActivatedRoute,
+             private notificationService : NotificationService,
              private api: MyApiService,private fb: FormBuilder,
              private dialogRef: MatDialogRef<FormationEditComponent>,
              @Inject(MAT_DIALOG_DATA) data){
@@ -54,6 +55,8 @@ onFormSubmit(form:NgForm){
           res=> {
            // let data = res;
             this.isloadingResults=false;
+            this.notificationService.success(' : : Accomplie avec succès ');
+            this.dialogRef.close();
           },(err) => {
             console.log(err);
             this.isloadingResults=false;
@@ -62,9 +65,9 @@ onFormSubmit(form:NgForm){
     } else {
       this.api.updateFormation(this.id,form)
       .subscribe(res => {
-       // let id = res['id'];
        this.isloadingResults = false;
-       // this.router.navigate(['/formation-detail',id]);
+       this.notificationService.success(' : : Accomplie avec succès ');
+       this.dialogRef.close();
        }, (err) => {
         console.log(err);
          this.isloadingResults = false;

@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SideNavService {
+
   public sidenavToggleBsubject : BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor() { }

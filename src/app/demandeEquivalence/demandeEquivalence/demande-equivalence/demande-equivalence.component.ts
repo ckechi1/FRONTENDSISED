@@ -48,7 +48,6 @@ export class DemandeEquivalenceComponent implements AfterViewInit, OnInit {
      .subscribe();
    }
 
-
    loadDemandeEquiPage() {
   //  const id  = this.route.snapshot.paramMap.get('id')
     this.dataSource.loadDemandeEqui(this.id , this.paginator.pageIndex, this.paginator.pageSize);
@@ -67,7 +66,9 @@ export class DemandeEquivalenceComponent implements AfterViewInit, OnInit {
   dialogConfig.data = data
   const dialogRef = this.dialog.open(DemandeEquivalenceAddComponent,dialogConfig);
 
-  dialogRef.afterClosed().subscribe(() => {
+  dialogRef.afterClosed().subscribe((value) => {
+    console.log(value);
+    console.log("fermer");
     this.loadDemandeEquiPage();
 
   });

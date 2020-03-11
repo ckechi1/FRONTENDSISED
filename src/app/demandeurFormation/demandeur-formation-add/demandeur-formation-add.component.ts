@@ -3,7 +3,7 @@ import { Validators, FormBuilder, NgForm, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MyApiService } from 'src/app/my-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { NotificationService } from '../../shared/notification.service';
 @Component({
   selector: 'app-demandeur-formation-add',
   templateUrl: './demandeur-formation-add.component.html',
@@ -27,6 +27,7 @@ export class DemandeurFormationAddComponent implements OnInit {
 
 constructor(private router: Router, private route: ActivatedRoute,
             private api: MyApiService,private fb: FormBuilder,
+            private notificationService :NotificationService,
             private dialogRef: MatDialogRef<DemandeurFormationAddComponent>,
            @Inject(MAT_DIALOG_DATA) data :any ){
 
@@ -41,7 +42,6 @@ constructor(private router: Router, private route: ActivatedRoute,
             etablissement: [null, Validators.required],
 
   });
-
 }
 
   ngOnInit() {
@@ -58,6 +58,8 @@ onformSubmit(form:NgForm){
   this.isloadingResults = true;
         this.api.addDemandeurFormation(this.demandeurId, this.nomFromSelectFormationID, form)
         .subscribe( res=> { this.isloadingResults=false;
+          this.notificationService.success(' : : Accomplie avec succès ');
+          this.dialogRef.close();
           },(err) => {
             console.log(err);
             this.isloadingResults=false;

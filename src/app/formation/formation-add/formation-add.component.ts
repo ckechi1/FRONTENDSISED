@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, Input } from '@angu
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MyApiService } from '../../my-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormationDataSource } from '../formation/formation/formation-datasource';
+import { FormationDataSource } from '../formation-datasource';
 import { MatTable, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { Formation } from '../formation';
 import { tap } from 'rxjs/operators';
@@ -61,8 +61,10 @@ export class FormationAddComponent implements OnInit {
     const dialogRef = this.dialog.open(FormationEditComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(() => {
-
+      this.isLoadingResults=true;
       this.loadFormationPage();
+      this.isLoadingResults=false;
+
 
     });
 }
@@ -79,8 +81,9 @@ editFormation({ id , nom , specialite , niveau , estDiplomate  }:Formation) {
   dialogConfig.data = data;
   const dialogRef = this.dialog.open(FormationEditComponent,dialogConfig);
   dialogRef.beforeClosed().subscribe(() => {
-
+    this.isLoadingResults=true;
     this.loadFormationPage();
+    this.isLoadingResults=false;
 
   });
 }

@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { DemandeurFormationEditComponent } from '../demandeur-formation-edit/demandeur-formation-edit.component';
 import { DemandeurFormationAddComponent } from '../demandeur-formation-add/demandeur-formation-add.component';
-
 @Component({
   selector: 'app-demandeur-formation',
   templateUrl: './demandeur-formation.component.html',
@@ -36,9 +35,9 @@ export class DemandeurFormationComponent implements OnInit {
   }
 
   ngOnInit() {
+
      this.dataSource = new DemandeurFormationDataSource(this.apiService);
      this.dataSource.loadDemandeurFormation(this.id, 0 , 3);
-
      this.getFormationData();
 
    }
@@ -60,7 +59,6 @@ export class DemandeurFormationComponent implements OnInit {
       if (data) {
          this.formation = data;
       }
-     //  console.log(this.formation);
      });
   }
 
@@ -78,10 +76,12 @@ export class DemandeurFormationComponent implements OnInit {
   console.log(data);
   dialogConfig.data = data;
   const dialogRef = this.dialog.open(DemandeurFormationAddComponent,dialogConfig);
-  dialogRef.afterClosed().subscribe(() => {
-  this.loadDemandeurFormationPage();
 
-  });
+   dialogRef.beforeClosed().subscribe(()=>{
+     this.isLoadingResults=true;
+     this.loadDemandeurFormationPage();
+     this.isLoadingResults=false;
+   });
 }
 
 
@@ -94,17 +94,14 @@ dialogConfig.width='600px';
 dialogConfig.height='330px';
 const formationData = this.formation;
 
-// console.log(demandeurFormation.demandeur.id);
-// console.log(demandeurFormation.formation.id);
-
 let data = { formationData , demandeurFormation };
 dialogConfig.data = data;
 const dialogRef = this.dialog.open(DemandeurFormationEditComponent,dialogConfig);
-dialogRef.beforeClosed().subscribe(() => {
-
+dialogRef.beforeClosed().subscribe((val)=>{
+  this.isLoadingResults=true;
   this.loadDemandeurFormationPage();
-
-   });
+  this.isLoadingResults=false;
+});
   }
 
 deleteDemandeurFormation(demandeurFormationId:number){
