@@ -1,6 +1,33 @@
 /* Structure*/
+.position-button-rejeter{
+  position:absolute;
+  transition: .5s ease;
+  top: 72%;
+  left: 82%;
+}
 
-.mat-icon {
+.position-button-approuver{
+  position:absolute;
+  transition: .5s ease;
+  top: 72%;
+  left: 59.50%;
+}
+
+.position-button-envoyer{
+  position:absolute;
+  transition: .5s ease;
+  top: 72%;
+  left: 39.50%;
+}
+
+.position-button-modifier{
+  position:absolute;
+  transition: .5s ease;
+  top: 72%;
+  left: 4.50%;
+}
+
+.icon-reduce{
   font-size: 18px;
 }
 

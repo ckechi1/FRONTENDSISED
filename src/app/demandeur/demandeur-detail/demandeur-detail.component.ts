@@ -10,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DemandeurDetailComponent implements OnInit {
 
-  demandeur : Demandeur ={id:null, nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:null,lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ;
+  //demandeur : Demandeur ={demandeEquivalence:null , id:null, nom :'',prenom:'',genre:'',nationalite:'',dateNaissance:null,lieuNaissance:'',adresse:'',telephone:null,email:'',status:'',numeroPieceDidentite:null} ;
   isLoadingResults=true;
-
+  demandeur: Demandeur[] = [] ;
   constructor(private route:ActivatedRoute ,private api : MyApiService , private router : Router) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class DemandeurDetailComponent implements OnInit {
     this.api.getDemandeur(id)
       .subscribe((data: any) => {
         this.demandeur = data;
-      // console.log(this.demandeur);
+       console.log(this.demandeur);
         this.isLoadingResults = false;
       });
   }
@@ -44,7 +44,12 @@ export class DemandeurDetailComponent implements OnInit {
       );
   }
 
-  // GoToDemandeurEdit(id : any , demandeur:Demandeur){
+
+  GoToDemandeurEdit(id){
+    this.router.navigate(['/demandeur-edit', id]);
+  }
+
+   // GoToDemandeurEdit(id : any , demandeur:Demandeur){
   //   this.isLoadingResults=true;
   //   this.api.updateDemandeur(id , demandeur)
   //   .subscribe(res=>{
@@ -55,7 +60,4 @@ export class DemandeurDetailComponent implements OnInit {
   //    }
   //   )}
 
-  GoToDemandeurEdit(id){
-    this.router.navigate(['/demandeur-edit', id]);
-  }
 }

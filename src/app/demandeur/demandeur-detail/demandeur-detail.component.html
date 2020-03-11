@@ -8,16 +8,14 @@
  fxLayoutGap.xs="0">
 
 <div class="widget" fxFlex="50%">
-
 <mat-card class="example-card" class="example-card">
-<mat-card-actions fxFlex="1%" fxFlexAlign="end"
-                  fxLayoutWrap="wrap" fxLayoutGap="3px"
-                  fxLayoutGap.xs="0">
 
-  <a mat-stroked-button mdl-js-ripple-effect color="accent" (click)="GoToDemandeurEdit(demandeur.id)"><mat-icon class>edit</mat-icon></a>
-  </mat-card-actions>
+<mat-card-actions class="position-button-modifier">
+  <a mat-stroked-button mdl-js-ripple-effect color="accent" (click)="GoToDemandeurEdit(demandeur.id)"><mat-icon>edit</mat-icon></a>
+</mat-card-actions>
+
     <div fxLayoutAlign="start" fxFlex="14%">
-       <div *ngIf="demandeur.genre=='masculin'then male_img else female_img"> </div>
+       <div *ngIf="demandeur && demandeur?.genre=='masculin'then male_img else female_img"> </div>
       <ng-template #male_img><a><img src="assets/img/male_img.png"></a></ng-template>
       <ng-template #female_img><a><img src="assets/img/female_img.png"></a></ng-template>
     </div>
@@ -27,24 +25,23 @@
         <div *ngIf="demandeur.genre=='masculin'then Male else Female "></div>
         <ng-template #Male>M.</ng-template>
         <ng-template #Female>Mme.</ng-template>
-        {{demandeur.nom}}
+        {{demandeur && demandeur?.nom}}
         </mat-card-title>
-        <mat-card-title>{{demandeur.prenom}}</mat-card-title>
-        <mat-card-subtitle><mat-icon>flag</mat-icon>{{demandeur.nationalite}}</mat-card-subtitle>
-        <mat-card-subtitle><mat-icon>email</mat-icon>{{demandeur.email}}</mat-card-subtitle>
-        <mat-card-subtitle><mat-icon>phone_iphone</mat-icon>{{demandeur.telephone}}</mat-card-subtitle>
+        <mat-card-title>{{demandeur && demandeur?.prenom}}</mat-card-title>
+        <mat-card-subtitle><mat-icon class="icon-reduce">flag</mat-icon>{{demandeur && demandeur?.nationalite}}</mat-card-subtitle>
+        <mat-card-subtitle><mat-icon class="icon-reduce">email</mat-icon>{{demandeur && demandeur?.email}}</mat-card-subtitle>
+        <mat-card-subtitle><mat-icon class="icon-reduce">phone_iphone</mat-icon>{{demandeur && demandeur?.telephone}}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content fxLayout fxLayoutAlign="end"
       fxLayoutWrap="wrap" fxLayoutGap="10px"
       fxLayoutGap.xs="0" fxFlex="45%">
         <dl>
-          <dd>date et lieu de naissance<mat-card-subtitle><mat-icon>event_note</mat-icon>{{demandeur.dateNaissance | date:'dd/MM/yyyy' : 'LL'}} , {{demandeur.lieuNaissance}}</mat-card-subtitle></dd>
-          <dd>numéro de la piece d'identité<mat-card-subtitle><mat-icon>perm_contact_calendar</mat-icon>N°{{demandeur.numeroPieceDidentite}}</mat-card-subtitle></dd>
-          <dd>Adresse<mat-card-subtitle><Address><mat-icon>home</mat-icon>{{demandeur.adresse}}</Address></mat-card-subtitle></dd>
+          <dd>date et lieu de naissance<mat-card-subtitle><mat-icon class="icon-reduce">event_note</mat-icon>{{demandeur && demandeur?.dateNaissance | date:'dd/MM/yyyy' : 'LL'}} , {{demandeur && demandeur?.lieuNaissance}}</mat-card-subtitle></dd>
+          <dd>numéro de la piece d'identité<mat-card-subtitle><mat-icon class="icon-reduce">perm_contact_calendar</mat-icon>N°{{demandeur && demandeur?.numeroPieceDidentite}}</mat-card-subtitle></dd>
+          <dd>Adresse<mat-card-subtitle><Address><mat-icon class="icon-reduce">home</mat-icon>{{demandeur && demandeur?.adresse}}</Address></mat-card-subtitle></dd>
         </dl>
       </mat-card-content>
-
     </mat-card>
     <div class="example-loading-shade"*ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -54,23 +51,45 @@
   <div fxFlex="50%" class="widget">
  <mat-card class="example-card" class="example-card">
 
-        <mat-card-header>
-          <mat-card-title></mat-card-title>
-          <mat-card-title></mat-card-title>
-          <mat-card-subtitle></mat-card-subtitle>
-          <mat-card-subtitle></mat-card-subtitle>
-          <mat-card-subtitle></mat-card-subtitle>
-        </mat-card-header>
+  <mat-card-actions class="position-button-envoyer">
+    <a mat-stroked-button color="primary">Envoyer<mat-icon class="icon-reduce">send</mat-icon></a>
+  </mat-card-actions>
+  <mat-card-actions class="position-button-approuver">
+    <a mat-stroked-button color="primary">Approuver<mat-icon class="icon-reduce">done_all</mat-icon></a>
+  </mat-card-actions>
+  <mat-card-actions class="position-button-rejeter">
+    <a mat-stroked-button  color="warn">Réjeter<mat-icon>replay</mat-icon></a>
+  </mat-card-actions>
+
+        <mat-card-content fxLayout  fxLayoutAlign="start"
+        fxLayoutWrap="wrap" fxLayoutGap="10px"
+        fxLayoutGap.xs="0" fxFlex="35%">
+        <!-- && and ? just checking to make sure the data is not null otherwise its throw an error in the console -->
+        <dl>
+          <dd>N° Bordereau<mat-card-subtitle><mat-icon class="icon-reduce">description</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroBordereau}}</mat-card-subtitle></dd>
+          <dd>N° Recepissé <mat-card-subtitle><mat-icon class="icon-reduce">receipt</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroRecepisse}}</mat-card-subtitle></dd>
+          <dd>Date de dépot<mat-card-subtitle><mat-icon class="icon-reduce">event_note</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.dateDepot | date:'dd/MM/yyyy' : 'LL'}}</mat-card-subtitle></dd>
+        </dl>
+      </mat-card-content>
+       <mat-card-content fxLayout  fxLayoutAlign="center"
+        fxLayoutWrap="wrap" fxLayoutGap="10px"
+        fxLayoutGap.xs="0" fxFlex="45%">
+           <dl>
+             <dd>Diplome Demandé<mat-card-subtitle><mat-icon class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeDemande}}</mat-card-subtitle></dd>
+             <dd>Diplome Antérieur <mat-card-subtitle><mat-icon class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeAnterieur}}</mat-card-subtitle></dd>
+            </dl>
+        </mat-card-content>
+
         <mat-card-content fxLayout  fxLayoutAlign="end"
         fxLayoutWrap="wrap" fxLayoutGap="10px"
-        fxLayoutGap.xs="0" fxFlex="50%" >
-          <dl>
-            <dd>.. <mat-card-subtitle>..</mat-card-subtitle></dd>
-            <dd>.... <mat-card-subtitle>.. Status du demandeur en cours........</mat-card-subtitle></dd>
-            <dd>..... <mat-card-subtitle>.....</mat-card-subtitle></dd>
-          </dl>
-        </mat-card-content>
-      </mat-card>
+        fxLayoutGap.xs="0" fxFlex="45%">
+             <dl>
+              <dd><mat-card-subtitle><button mat-stroked-button  color="primary"><mat-icon>add_circle_outline</mat-icon></button></mat-card-subtitle></dd>
+              <dd>....<mat-card-subtitle>.....</mat-card-subtitle></dd>
+             </dl>
+
+          </mat-card-content>
+         </mat-card>
   </div>
   </div>
 
@@ -82,6 +101,7 @@
   <mat-tab-group dynamicHeight animationDuration="500ms"
    color="primary" mat-align-tabs="start" >
     <mat-tab label="Formation">
+      <ng-template mat-tab-label><mat-icon>school</mat-icon><span>Formations</span></ng-template>
       <div class="example-large-box mat-elevation-z4">
         <app-demandeur-formation></app-demandeur-formation>
        </div>

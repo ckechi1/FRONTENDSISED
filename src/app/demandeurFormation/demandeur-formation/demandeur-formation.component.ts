@@ -110,9 +110,9 @@ dialogRef.beforeClosed().subscribe((val)=>{
   }
 
 deleteDemandeurFormation(demandeurFormationId:number){
-  this.dialogService.openConfirmDialog("Êtes-vous certain , Cette action est définitive et irréversible")
-  .afterClosed().subscribe(res =>{
-     if (res){
+this.dialogService.openConfirmDialog("Êtes-vous certain , Cette action est définitive et irréversible")
+.afterClosed().subscribe(res =>{
+if (res){
 this.isLoadingResults = true;
 this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId )
 .subscribe(() => {

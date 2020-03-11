@@ -1,3 +1,5 @@
+import { DemandeEquivalence } from '../demandeEquivalence/demandeEquivalence';
+
 export interface Demandeur {
         id:number;
         nom:string;
@@ -11,4 +13,7 @@ export interface Demandeur {
         email:string;
         status:string;
         numeroPieceDidentite:number;
+        demandeEquivalence : DemandeEquivalence  ;
+
+
  }
