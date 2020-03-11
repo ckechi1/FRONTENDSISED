@@ -37,6 +37,7 @@ import { CustomDateAdapter } from './customDateAdapter';
 import { DemandeurFormationComponent } from './demandeurFormation/demandeur-formation/demandeur-formation.component';
 import { DemandeurFormationEditComponent } from './demandeurFormation/demandeur-formation-edit/demandeur-formation-edit.component';
 import { DemandeurFormationAddComponent } from './demandeurFormation/demandeur-formation-add/demandeur-formation-add.component';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { DemandeurFormationAddComponent } from './demandeurFormation/demandeur-f
     FormationAddComponent,
     FormationEditComponent , DemandeEquivalenceComponent,
     DemandeEquivalenceAddComponent, DemandeurFormationComponent,
-    DemandeurFormationEditComponent, DemandeurFormationAddComponent
+    DemandeurFormationEditComponent, DemandeurFormationAddComponent, MatConfirmDialogComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -109,7 +110,8 @@ import { DemandeurFormationAddComponent } from './demandeurFormation/demandeur-f
   ],
   bootstrap: [AppComponent],
   entryComponents: [FormationEditComponent , DemandeEquivalenceAddComponent ,
-                    DemandeurFormationEditComponent , DemandeurFormationAddComponent ]
+                    DemandeurFormationEditComponent , DemandeurFormationAddComponent,
+                    MatConfirmDialogComponent ]
 
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
 /* notification */
 
 snack-bar-container.success {
@@ -21,7 +22,6 @@ snack-bar-container.notification simple-snack-bar{
   font-weight: bold;
 
 }
-
 
 .hide{
   display: none;

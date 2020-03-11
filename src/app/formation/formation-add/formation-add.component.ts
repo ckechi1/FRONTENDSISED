@@ -7,7 +7,8 @@ import { MatTable, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@an
 import { Formation } from '../formation';
 import { tap } from 'rxjs/operators';
 import { FormationEditComponent } from '../formation-edit/formation-edit.component';
-
+import { NotificationService } from '../../shared/notification.service';
+import { DialogService } from 'src/app/shared/dialog.service';
 @Component({
   selector: 'app-formation-add',
   templateUrl: './formation-add.component.html',
@@ -29,6 +30,8 @@ export class FormationAddComponent implements OnInit {
   isLoadingResults = false;
 
   constructor(private route:ActivatedRoute , private router: Router,
+              private notificationService : NotificationService,
+              private dialogService: DialogService,
               private api: MyApiService, private dialog: MatDialog ) {}
 
   ngOnInit() {
@@ -89,14 +92,21 @@ editFormation({ id , nom , specialite , niveau , estDiplomate  }:Formation) {
 }
 
 deleteFormation(id:number){
+  this.dialogService.openConfirmDialog("Êtes-vous certain , Cette action est définitive et irréversible")
+  .afterClosed().subscribe(res =>{
+     if (res){
   this.isLoadingResults = true;
   this.api.DeleteFormation(id)
   .subscribe(() => {
     this.isLoadingResults=false;
     this.loadFormationPage();
-  },  (err) => {
+    this.notificationService.warn(` ! formation ${id} suppimé avec succes `);
+       },  (err) => {
     console.log(err);
     this.isLoadingResults=false
-  })
+     });
+    }
+  });
  }
+
 }

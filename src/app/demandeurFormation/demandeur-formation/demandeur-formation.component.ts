@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { DemandeurFormationEditComponent } from '../demandeur-formation-edit/demandeur-formation-edit.component';
 import { DemandeurFormationAddComponent } from '../demandeur-formation-add/demandeur-formation-add.component';
+import { NotificationService } from '../../shared/notification.service';
+import { DialogService } from '../../shared/dialog.service';
+
 @Component({
   selector: 'app-demandeur-formation',
   templateUrl: './demandeur-formation.component.html',
@@ -31,6 +34,8 @@ export class DemandeurFormationComponent implements OnInit {
   isLoadingResults = true;
 
   constructor(private apiService : MyApiService , private route : ActivatedRoute ,
+              private notificationService : NotificationService,
+              private dialogService : DialogService,
               private router:Router , private dialog: MatDialog) {
   }
 
@@ -105,14 +110,20 @@ dialogRef.beforeClosed().subscribe((val)=>{
   }
 
 deleteDemandeurFormation(demandeurFormationId:number){
+  this.dialogService.openConfirmDialog("Êtes-vous certain , Cette action est définitive et irréversible")
+  .afterClosed().subscribe(res =>{
+     if (res){
 this.isLoadingResults = true;
 this.apiService.DeleteDemandeurFormation(this.id , demandeurFormationId )
 .subscribe(() => {
   this.isLoadingResults=false;
   this.loadDemandeurFormationPage();
+  this.notificationService.warn(` ! formation ${demandeurFormationId} suppimé avec succes `)
   },(err) => {
   console.log(err);
   this.isLoadingResults=false;
-   })
+      });
+     }
+   });
   }
-}
+ }
