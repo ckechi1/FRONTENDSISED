@@ -1,34 +1,67 @@
 /* Structure*/
+
+/* mat card content size*/
+.mat-card {
+  width: 100% ;
+  height: 95% ;
+}
+/* button  position*/
 .position-button-rejeter{
   position:absolute;
   transition: .5s ease;
-  top: 72%;
-  left: 82%;
+  top: 80%;
+  left: 84%;
 }
 
 .position-button-approuver{
   position:absolute;
   transition: .5s ease;
-  top: 72%;
-  left: 59.50%;
+  top: 80%;
+  left: 64%;
 }
 
 .position-button-envoyer{
   position:absolute;
   transition: .5s ease;
-  top: 72%;
-  left: 39.50%;
+  top: 80%;
+  left: 46%;
 }
 
 .position-button-modifier{
   position:absolute;
   transition: .5s ease;
-  top: 72%;
+  top: 60%;
   left: 4.50%;
 }
 
+.button-view-more{
+  position:absolute;
+  transition: .5s ease;
+  top: 0%;
+  left: 2%;
+}
+
+.button-add-new{
+  position:absolute;
+  transition: .5s ease;
+  top: 58px;
+  left: 2%;
+
+}
+/* button size and icon size*/
+
 .icon-reduce{
-  font-size: 18px;
+  font-size: 19px;
+}
+
+.button-reduce{
+  font-size: 11px;
+  line-height: 15px;
+  font-weight: 400;
+}
+
+.icon-reduce-inButton{
+  font-size: 15px;
 }
 
 .example-container {

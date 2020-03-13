@@ -87,9 +87,9 @@ let data = { demandeurId , id , dateDepot , numeroRecepisse, numeroBordereau , d
 dialogConfig.data = data;
 const dialogRef = this.dialog.open(DemandeEquivalenceAddComponent,dialogConfig);
 dialogRef.beforeClosed().subscribe(() => {
-
+  this.isLoadingResults=true;
   this.loadDemandeEquiPage();
-
+  this.isLoadingResults=false;
 });
 
 }

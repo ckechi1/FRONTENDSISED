@@ -11,7 +11,7 @@
 <mat-card class="example-card" class="example-card">
 
 <mat-card-actions class="position-button-modifier">
-  <a mat-stroked-button mdl-js-ripple-effect color="accent" (click)="GoToDemandeurEdit(demandeur.id)"><mat-icon>edit</mat-icon></a>
+  <a mat-button  color="accent" (click)="GoToDemandeurEdit(demandeur.id)"><mat-icon>edit</mat-icon></a>
 </mat-card-actions>
 
     <div fxLayoutAlign="start" fxFlex="14%">
@@ -28,18 +28,18 @@
         {{demandeur && demandeur?.nom}}
         </mat-card-title>
         <mat-card-title>{{demandeur && demandeur?.prenom}}</mat-card-title>
-        <mat-card-subtitle><mat-icon class="icon-reduce">flag</mat-icon>{{demandeur && demandeur?.nationalite}}</mat-card-subtitle>
-        <mat-card-subtitle><mat-icon class="icon-reduce">email</mat-icon>{{demandeur && demandeur?.email}}</mat-card-subtitle>
-        <mat-card-subtitle><mat-icon class="icon-reduce">phone_iphone</mat-icon>{{demandeur && demandeur?.telephone}}</mat-card-subtitle>
+        <mat-card-subtitle><mat-icon color="primary" class="icon-reduce">flag</mat-icon>{{demandeur && demandeur?.nationalite}}</mat-card-subtitle>
+        <mat-card-subtitle><mat-icon color="primary" class="icon-reduce">email</mat-icon>{{demandeur && demandeur?.email}}</mat-card-subtitle>
+        <mat-card-subtitle><mat-icon color="primary" class="icon-reduce">phone_iphone</mat-icon>{{demandeur && demandeur?.telephone}}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content fxLayout fxLayoutAlign="end"
       fxLayoutWrap="wrap" fxLayoutGap="10px"
       fxLayoutGap.xs="0" fxFlex="45%">
         <dl>
-          <dd>date et lieu de naissance<mat-card-subtitle><mat-icon class="icon-reduce">event_note</mat-icon>{{demandeur && demandeur?.dateNaissance | date:'dd/MM/yyyy' : 'LL'}} , {{demandeur && demandeur?.lieuNaissance}}</mat-card-subtitle></dd>
-          <dd>numéro de la piece d'identité<mat-card-subtitle><mat-icon class="icon-reduce">perm_contact_calendar</mat-icon>N°{{demandeur && demandeur?.numeroPieceDidentite}}</mat-card-subtitle></dd>
-          <dd>Adresse<mat-card-subtitle><Address><mat-icon class="icon-reduce">home</mat-icon>{{demandeur && demandeur?.adresse}}</Address></mat-card-subtitle></dd>
+          <dd>Date et lieu de naissance<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">event_note</mat-icon>{{demandeur && demandeur?.dateNaissance | date:'dd/MM/yyyy' : 'LL'}} , {{demandeur && demandeur?.lieuNaissance}}</mat-card-subtitle></dd>
+          <dd>Numéro de la piece d'identité<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">perm_contact_calendar</mat-icon>N°{{demandeur && demandeur?.numeroPieceDidentite}}</mat-card-subtitle></dd>
+          <dd>Adresse<mat-card-subtitle><Address><mat-icon color="primary" class="icon-reduce">home</mat-icon>{{demandeur && demandeur?.adresse}}</Address></mat-card-subtitle></dd>
         </dl>
       </mat-card-content>
     </mat-card>
@@ -52,44 +52,52 @@
  <mat-card class="example-card" class="example-card">
 
   <mat-card-actions class="position-button-envoyer">
-    <a mat-stroked-button color="primary">Envoyer<mat-icon class="icon-reduce">send</mat-icon></a>
+    <a mat-stroked-button class="button-reduce" color="primary">Envoyer<mat-icon class="icon-reduce-inButton">send</mat-icon></a>
   </mat-card-actions>
   <mat-card-actions class="position-button-approuver">
-    <a mat-stroked-button color="primary">Approuver<mat-icon class="icon-reduce">done_all</mat-icon></a>
+    <a mat-stroked-button class="button-reduce" color="primary">Approuver<mat-icon class="icon-reduce-inButton">done_all</mat-icon></a>
   </mat-card-actions>
   <mat-card-actions class="position-button-rejeter">
-    <a mat-stroked-button  color="warn">Réjeter<mat-icon>replay</mat-icon></a>
+    <a mat-stroked-button class="button-reduce" color="warn">Réjeter<mat-icon class="icon-reduce-inButton">cancel_schedule_send</mat-icon></a>
+  </mat-card-actions>
+  <mat-card-actions class="button-view-more">
+  <a mat-icon-button color="primary" ><mat-icon>add_circle_outline</mat-icon></a>
+  </mat-card-actions>
+  <mat-card-actions class="button-add-new">
+    <a mat-icon-button color="accent"><mat-icon>edit</mat-icon></a>
   </mat-card-actions>
 
         <mat-card-content fxLayout  fxLayoutAlign="start"
-        fxLayoutWrap="wrap" fxLayoutGap="10px"
-        fxLayoutGap.xs="0" fxFlex="35%">
+        fxLayoutWrap="wrap" fxLayoutGap="5px"
+        fxLayoutGap.xs="0" fxFlex="28%">
         <!-- && and ? just checking to make sure the data is not null otherwise its throw an error in the console -->
         <dl>
-          <dd>N° Bordereau<mat-card-subtitle><mat-icon class="icon-reduce">description</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroBordereau}}</mat-card-subtitle></dd>
-          <dd>N° Recepissé <mat-card-subtitle><mat-icon class="icon-reduce">receipt</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroRecepisse}}</mat-card-subtitle></dd>
-          <dd>Date de dépot<mat-card-subtitle><mat-icon class="icon-reduce">event_note</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.dateDepot | date:'dd/MM/yyyy' : 'LL'}}</mat-card-subtitle></dd>
+          <dd>Bordereau<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">description</mat-icon>N°{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroBordereau}}</mat-card-subtitle></dd>
+          <dd>Recepissé <mat-card-subtitle><mat-icon color="primary" class="icon-reduce">receipt</mat-icon>N°{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.numeroRecepisse}}</mat-card-subtitle></dd>
+          <dd>Date de dépot<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">event_note</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.dateDepot | date:'dd/MM/yyyy' : 'LL'}}</mat-card-subtitle></dd>
         </dl>
       </mat-card-content>
-       <mat-card-content fxLayout  fxLayoutAlign="center"
-        fxLayoutWrap="wrap" fxLayoutGap="10px"
-        fxLayoutGap.xs="0" fxFlex="45%">
+
+       <mat-card-content fxLayout  fxLayoutAlign="start"
+        fxLayoutWrap="wrap" fxLayoutGap="5px"
+        fxLayoutGap.xs="0" fxFlex="32%">
            <dl>
-             <dd>Diplome Demandé<mat-card-subtitle><mat-icon class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeDemande}}</mat-card-subtitle></dd>
-             <dd>Diplome Antérieur <mat-card-subtitle><mat-icon class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeAnterieur}}</mat-card-subtitle></dd>
+             <dd>Diplome Demandé<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeDemande}}</mat-card-subtitle></dd>
+             <dd>Diplome Antérieur <mat-card-subtitle><mat-icon color="primary" class="icon-reduce">school</mat-icon>{{ demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.diplomeAnterieur}}</mat-card-subtitle></dd>
             </dl>
         </mat-card-content>
 
-        <mat-card-content fxLayout  fxLayoutAlign="end"
-        fxLayoutWrap="wrap" fxLayoutGap="10px"
-        fxLayoutGap.xs="0" fxFlex="45%">
+        <mat-card-content fxLayout  fxLayoutAlign="start"
+        fxLayoutWrap="wrap" fxLayoutGap="5px"
+        fxLayoutGap.xs="0" fxFlex="43%">
              <dl>
-              <dd><mat-card-subtitle><button mat-stroked-button  color="primary"><mat-icon>add_circle_outline</mat-icon></button></mat-card-subtitle></dd>
-              <dd>....<mat-card-subtitle>.....</mat-card-subtitle></dd>
+              <dd>Status/Date modification<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">schedule</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.statusDemande[0]?.status}} , {{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.statusDemande[0]?.date | date:'dd/MM/yyyy' : 'LL'}}</mat-card-subtitle></dd>
+              <dd>Libellé<mat-card-subtitle><mat-icon color="primary" class="icon-reduce">notes</mat-icon>{{demandeur.demandeEquivalences && demandeur.demandeEquivalences[0]?.statusDemande[0]?.libelle}}</mat-card-subtitle></dd>
              </dl>
-
           </mat-card-content>
+
          </mat-card>
+
   </div>
   </div>
 
@@ -101,12 +109,13 @@
   <mat-tab-group dynamicHeight animationDuration="500ms"
    color="primary" mat-align-tabs="start" >
     <mat-tab label="Formation">
-      <ng-template mat-tab-label><mat-icon>school</mat-icon><span>Formations</span></ng-template>
+      <ng-template mat-tab-label><mat-icon color="primary">school</mat-icon><span>Formations</span></ng-template>
       <div class="example-large-box mat-elevation-z4">
         <app-demandeur-formation></app-demandeur-formation>
        </div>
     </mat-tab>
     <mat-tab label="Demande d'equivalence ">
+      <ng-template mat-tab-label><mat-icon color="primary">book</mat-icon><span>Demande d'equivalence</span></ng-template>
       <div class="example-large-box mat-elevation-z4">
         <app-demande-equivalence></app-demande-equivalence>
        </div>
