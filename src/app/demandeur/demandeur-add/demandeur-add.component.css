@@ -38,3 +38,10 @@
   top: 105%;
   left: 4%;
 }
+
+.button-clear {
+  position:absolute;
+  transition: .5s ease;
+  top: 105%;
+  left: 15%;
+}

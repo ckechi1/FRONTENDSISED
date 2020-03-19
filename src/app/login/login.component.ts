@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './auth.service';
+import { TokenStorageService } from './token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -8,33 +9,43 @@ import { AuthenticationService } from './auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-   isOn = true;
 
-  username: string;
-  password : string;
-  errorMessage = 'Invalid Credentials';
-  successMessage: string;
-  invalidLogin = false;
-  loginSuccess = false;
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService) {   }
+  constructor(private authService: AuthenticationService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-
+    if (this.tokenStorage.getToken()) {
+     // console.log(this.tokenStorage.getToken);
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser();
+      //console.log(this.roles);
+    }
   }
 
-  handleLogin() {
-    this.authenticationService.authenticationService(this.username, this.password).subscribe((result)=> {
-      this.invalidLogin = false;
-      this.loginSuccess = true;
-      this.successMessage = 'Login Successful.';
-      this.router.navigate(['/demandeurs']);
-    }, () => {
-      this.invalidLogin = true;
-      this.loginSuccess = false;
-    });
+  onSubmit() {
+    this.authService.login(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.tokenStorage.saveToken(data.token);
+        this.tokenStorage.saveUser(data.role);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().role;
+        console.log(this.roles);
+       this.reloadPage();
+      },
+      (err) => {
+        console.log(err);
+        this.isLoginFailed = false;
+      });
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 }

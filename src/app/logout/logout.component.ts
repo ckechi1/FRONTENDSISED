@@ -7,8 +7,8 @@ import { AuthenticationService } from '../login/auth.service';
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.css']
 })
-export class LogoutComponent implements OnInit { 
-  
+export class LogoutComponent implements OnInit {
+
   Roles: any = ['Admin', 'Author', 'Reader'];
 
   isLoggedIn = false;
@@ -18,11 +18,11 @@ export class LogoutComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
-    console.log('menu ->' + this.isLoggedIn);
+    // this.isLoggedIn = this.authenticationService.login();
+    // console.log('menu ->' + this.isLoggedIn);
   }
 
   handleLogout() {
-    this.authenticationService.logout();
+    // this.authenticationService.logout();
   }
 }
