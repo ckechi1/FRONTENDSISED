@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './auth.service';
 import { TokenStorageService } from './token-storage.service';
@@ -16,9 +16,11 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthenticationService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthenticationService,private router : Router ,
+              private tokenStorage: TokenStorageService, ) { }
 
   ngOnInit() {
+    document.querySelector('body').classList.add('blue');
     if (this.tokenStorage.getToken()) {
      // console.log(this.tokenStorage.getToken);
       this.isLoggedIn = true;
@@ -32,12 +34,12 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data.role);
+        this.tokenStorage.saveUser(data.username);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().role;
+        this.roles = data.role;
         console.log(this.roles);
-       this.reloadPage();
+        this.navigateByReloadingPage();
       },
       (err) => {
         console.log(err);
@@ -45,7 +47,29 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  reloadPage() {
+
+  navigateByReloadingPage(){
+    this.router.navigate(['/demandeurs']).then(() => {
     window.location.reload();
+  });
+  }
+//   reloadCurrentRoute() {
+//     let currentUrl = this.router.url;
+//     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+//     this.router.navigate([currentUrl]);
+//     });
+// }
+
+}
+
+@Directive({ selector: '[BlueDirective]' })
+export class BlueDirective implements OnDestroy, AfterViewInit {
+
+  ngAfterViewInit() {
+    document.querySelector('body').classList.add('blue');
+
+  }
+  ngOnDestroy(): void {
+    document.querySelector('body').classList.remove('blue');
   }
 }

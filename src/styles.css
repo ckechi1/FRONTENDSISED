@@ -1,9 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {height: 100%;overflow: scroll;overflow-x: hidden; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ }
 
-
+  /* .blue{
+  background-image:url(/assets/img/back2.png);
+  height: 86vh;
+  width: 50vw;
+  background-size:cover;
+  background-position: initial;
+ }  */
 
 /* notification */
 
@@ -25,4 +32,15 @@ snack-bar-container.notification simple-snack-bar{
 
 .hide{
   display: none;
+}
+
+/* remove scroll bar from app link with overflow-x  and overflow ,*/
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
 }

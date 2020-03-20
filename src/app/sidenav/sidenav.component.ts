@@ -8,7 +8,8 @@ import { SideNavService } from '../shared/side-nav.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-
+  isloggedin=true;
+  token?:string;
   opened = true;
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
@@ -16,9 +17,9 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
 
-     this.sidenavService.sidenavToggleBsubject.subscribe(() => { this.sidenav.toggle(); });
+    this.sidenavService.sidenavToggleBsubject.subscribe(() => { this.sidenav.toggle(); });
 
-   // console.log(window.innerWidth)
+    // console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;
       this.opened = false;
@@ -47,6 +48,7 @@ export class SidenavComponent implements OnInit {
       return false;
     }
   }
+
 
 }
 

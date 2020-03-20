@@ -27,17 +27,13 @@
         <a mat-list-item>
           <mat-icon color = "primary">info_outline</mat-icon> A propos
         </a>
-        <a mat-list-item >
-          <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
-        <mat-icon color = "warn" >logout</mat-icon>Deconnexion
-        </a>
 
       </mat-nav-list>
     </mat-sidenav>
 
   <mat-sidenav-content>
 
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 
   </mat-sidenav-content>
 

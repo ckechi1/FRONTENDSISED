@@ -15,18 +15,10 @@ import { DemandeurFormationComponent } from './demandeurFormation/demandeur-form
 import { DemandeurFormationEditComponent } from './demandeurFormation/demandeur-formation-edit/demandeur-formation-edit.component';
 const routes: Routes = [
 
-   {path: 'login', component: LoginComponent},
-//  {path: '', component: LoginComponent},
-//  {path: 'logout', component: LoginComponent},
-   {path: 'logout', component: LogoutComponent},
 
-
-    { path: '', component: LoginComponent },
-    { path: '', children: [
-    { path: 'demandeurs', component: DemandeursComponent }
-   ] },
-
-
+  { path: 'login', component: LoginComponent ,data:{ title:'login'}},
+  { path: '',
+  children: [
       /* --- Demandeurs routers ---  */
    {path:'demandeur-add',component:DemandeurAddComponent,data:{ title:'Add demandeur'}},
    {path:'demandeurs',component:DemandeursComponent,data:{title:'List of demandeurs'}},
@@ -43,8 +35,9 @@ const routes: Routes = [
    {path :'demandeEquivalence-add',component:DemandeEquivalenceAddComponent,data:{title:'add demandeEquivalence'}},
    /* --- default route --- */
    {path:'',redirectTo:'/login',pathMatch:'full'}
-
- ];
+  ]
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent, BlueDirective } from './login/login.component';
 import { HttpInterceptorService } from './login/http-interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -47,7 +47,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     DemandeurAddComponent,
     DemandeurDetailComponent,
     DemandeurEditComponent,
-    LogoutComponent,
+    LogoutComponent,BlueDirective,
     LoginComponent, SidenavComponent,
     FormationAddComponent,
     FormationEditComponent , DemandeEquivalenceComponent,
