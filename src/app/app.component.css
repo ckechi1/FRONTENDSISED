@@ -19,7 +19,6 @@
   font-weight: 400;
 }
 
-
 /* resize footer text  */
 .footer-text{
   font-size: 12px;
@@ -32,3 +31,19 @@
   height: 45px !important;
 }
 
+.aligned-with-icon-account{
+    position: relative;
+    top: 4px;
+    margin-right: 4px;; /* optional */
+}
+
+.connected-icon{
+  position: relative;
+  top: 2px;
+  margin-left: 4px; /* optional */
+  color:greenyellow;
+}
+
+#iconreduce{
+  font-size: 15px;
+}

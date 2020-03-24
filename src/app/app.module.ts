@@ -3,6 +3,7 @@ MatProgressSpinnerModule,MatSortModule,MatTableModule,MatIconModule,
 MatButtonModule,MatCardModule,MatFormFieldModule, MatBadgeModule,
 MatGridListModule, MatSelectModule, MatRadioModule, MatDatepickerModule,
 MatNativeDateModule, MatChipsModule, MatTooltipModule } from "@angular/material";
+import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent, BlueDirective } from './login/login.component';
+import { LoginComponent } from './login/login.component';
 import { HttpInterceptorService } from './login/http-interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -38,6 +39,8 @@ import { DemandeurFormationComponent } from './demandeurFormation/demandeur-form
 import { DemandeurFormationEditComponent } from './demandeurFormation/demandeur-formation-edit/demandeur-formation-edit.component';
 import { DemandeurFormationAddComponent } from './demandeurFormation/demandeur-formation-add/demandeur-formation-add.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import { JwtInterceptor } from './login/jwt-interceptor.service';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -47,7 +50,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     DemandeurAddComponent,
     DemandeurDetailComponent,
     DemandeurEditComponent,
-    LogoutComponent,BlueDirective,
+    LogoutComponent,
     LoginComponent, SidenavComponent,
     FormationAddComponent,
     FormationEditComponent , DemandeEquivalenceComponent,
@@ -64,6 +67,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatMenuModule,
       BrowserAnimationsModule,
       MatInputModule,
       MatTableModule,
@@ -96,17 +100,16 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
       MatCardModule,
       CommonModule,
       MatTabsModule,
-      MatStepperModule
+      MatStepperModule,
+      NgxPermissionsModule.forRoot()
   ],
   providers: [
     {
       provide: DateAdapter, useClass: CustomDateAdapter
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    }
+    {provide: HTTP_INTERCEPTORS,useClass: HttpInterceptorService,multi: true},
+    {provide: HTTP_INTERCEPTORS,useClass: JwtInterceptor,multi: true}
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [FormationEditComponent , DemandeEquivalenceAddComponent ,

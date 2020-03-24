@@ -2,9 +2,28 @@
 <ng-template #showButton>
 <mat-toolbar color="primary" class="header">
   <mat-slide-toggle  (click)="clickMenu()" color="accent"  ></mat-slide-toggle>
-    <span class="nav-tool-items" >
+
+
+<div fxFlex="90%" fxLayout="row" fxLayoutAlign="end">
+  <mat-icon [matMenuTriggerFor]="menu" class="aligned-with-icon-account">account_box</mat-icon>
+  <span>{{user}}<mat-icon id="iconreduce" class="connected-icon">fiber_manual_record</mat-icon></span>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voicemail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>
+
+  <span class="nav-tool-items" >
   <!-- <a mat-button  class ="mbutton" mat-raised-button routerLink="logout" routerLinkActive="active">créer utilisateur </a>
        <a mat-button  class="mbutton" mat-raised-button  (click)="logOut()" color="warn">déconnexion</a> -->
+
        <button mat-icon-button color="warn" (click)="logOut()"><mat-icon color="warn">input</mat-icon></button>
       </span>
   </mat-toolbar>

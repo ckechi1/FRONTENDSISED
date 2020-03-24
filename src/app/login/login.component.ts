@@ -2,6 +2,9 @@ import { Component, OnInit, Directive, AfterViewInit, OnDestroy } from '@angular
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './auth.service';
 import { TokenStorageService } from './token-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationService } from '../shared/notification.service';
+import { SideNavService } from '../shared/side-nav.service';
 
 @Component({
   selector: 'app-login',
@@ -11,65 +14,47 @@ import { TokenStorageService } from './token-storage.service';
 export class LoginComponent implements OnInit {
 
   form: any = {};
-  isLoggedIn = false;
+  isLoggedIn = true;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
 
   constructor(private authService: AuthenticationService,private router : Router ,
+              private sideNavService: SideNavService,
+              private notificationService:NotificationService,
               private tokenStorage: TokenStorageService, ) { }
 
   ngOnInit() {
-    document.querySelector('body').classList.add('blue');
+
     if (this.tokenStorage.getToken()) {
-     // console.log(this.tokenStorage.getToken);
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser();
-      //console.log(this.roles);
+        this.isLoggedIn = true;
+     //  this.role = this.tokenStorage.getRole();
+    //  console.log("onInit", this.role);
     }
+
   }
 
   onSubmit() {
     this.authService.login(this.form).subscribe(
       data => {
-        console.log(data);
+      //  console.log(data);
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.username);
+        this.tokenStorage.saveRole(data.role[0].name);
+        let privilegeData = data.role[0].privileges;
+        this.tokenStorage.savePrivilege(privilegeData);
         this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = data.role;
-        console.log(this.roles);
-        this.navigateByReloadingPage();
-      },
-      (err) => {
-        console.log(err);
-        this.isLoginFailed = false;
+       // this.navigateByReloadingPage();
+        this.notificationService.success(" : : Connexion avec succes ");
+        this.sideNavService.logintriggerBSubject.subscribe(val =>{ val = this.isLoggedIn;});
       });
   }
-
 
   navigateByReloadingPage(){
     this.router.navigate(['/demandeurs']).then(() => {
     window.location.reload();
   });
   }
-//   reloadCurrentRoute() {
-//     let currentUrl = this.router.url;
-//     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-//     this.router.navigate([currentUrl]);
-//     });
-// }
 
 }
 
-@Directive({ selector: '[BlueDirective]' })
-export class BlueDirective implements OnDestroy, AfterViewInit {
 
-  ngAfterViewInit() {
-    document.querySelector('body').classList.add('blue');
-
-  }
-  ngOnDestroy(): void {
-    document.querySelector('body').classList.remove('blue');
-  }
-}

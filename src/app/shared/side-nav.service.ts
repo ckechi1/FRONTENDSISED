@@ -10,7 +10,7 @@ export class SideNavService {
   public sidenavToggleBsubject : BehaviorSubject<any> = new BehaviorSubject(null);
   public logintriggerBSubject : BehaviorSubject<Boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor( private tokenStorage: TokenStorageService) { }
+  constructor(private tokenStorage: TokenStorageService) { }
 
   public toggle(){
     this.sidenavToggleBsubject.next(null);
