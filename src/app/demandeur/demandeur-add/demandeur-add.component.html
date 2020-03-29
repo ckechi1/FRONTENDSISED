@@ -1,8 +1,7 @@
 
  <mat-card class="example-card">
   <mat-card-content>
-  <form class="example-form" [formGroup]="formulaireDemandeur"
-    (ngSubmit)="surFormValider()"
+  <form class="example-form" [formGroup]="formulaireDemandeur" (ngSubmit)="surFormValider()"
      fxLayoutWrap="wrap"
      fxFlex="100%">
 
@@ -116,9 +115,9 @@
 
 <button mat-raised-button class="button-add" color="primary" type="submit"><mat-icon>done_outline</mat-icon>  valider</button>
 
-<button mat-raised-button class="button-clear" color="warn" type="submit"><mat-icon>settings_backup_restore</mat-icon> vider les champs</button>
-
 </form>
+
+<button mat-raised-button class="button-clear" color="warn" (click)="formulaireDemandeur.reset()" ><mat-icon>settings_backup_restore</mat-icon> vider les champs</button>
 
 </mat-card-content>
 </mat-card>

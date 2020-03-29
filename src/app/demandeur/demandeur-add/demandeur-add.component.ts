@@ -36,7 +36,8 @@ export class DemandeurAddComponent implements OnInit {
   isloadingResults=false;
   //matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute,private router: Router, private notificationService : NotificationService ,
+  constructor(private route: ActivatedRoute,private router: Router,
+              private notificationService : NotificationService ,
               private api: MyApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -72,6 +73,10 @@ export class DemandeurAddComponent implements OnInit {
         console.log(err);
         this.isloadingResults = false;
       });
+  }
+
+  reset() {
+    this.formulaireDemandeur.reset();
   }
 
 }

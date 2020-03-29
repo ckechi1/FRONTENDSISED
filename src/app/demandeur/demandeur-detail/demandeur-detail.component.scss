@@ -1,4 +1,7 @@
 /* Structure*/
+.example-stretched-tabs {
+  max-width: 8000px;
+}
 
 /* mat card content size*/
 .mat-card {
@@ -24,7 +27,7 @@
   position:absolute;
   transition: .5s ease;
   top: 80%;
-  left: 46%;
+  left: 80%;
 }
 
 .position-button-modifier{

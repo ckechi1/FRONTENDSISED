@@ -7,6 +7,7 @@ import { TokenStorageService } from '../login/token-storage.service';
 })
 export class SideNavService {
   token:string;
+  islvalid:boolean;
   public sidenavToggleBsubject : BehaviorSubject<any> = new BehaviorSubject(null);
   public logintriggerBSubject : BehaviorSubject<Boolean> = new BehaviorSubject<boolean>(false);
 
@@ -16,5 +17,9 @@ export class SideNavService {
     this.sidenavToggleBsubject.next(null);
   }
 
+  public sendData(){
+     this.logintriggerBSubject.next(this.islvalid);
+     console.log("sendata" , this.islvalid);
+  }
 }
 

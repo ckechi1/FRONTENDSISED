@@ -5,7 +5,7 @@ import { DemandeurEditComponent } from './demandeur/demandeur-edit/demandeur-edi
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
+import { LogoutComponent } from './Register/logout.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FormationAddComponent } from './formation/formation-add/formation-add.component';
 import { DemandeEquivalenceComponent } from './demandeEquivalence/demandeEquivalence/demande-equivalence/demande-equivalence.component'

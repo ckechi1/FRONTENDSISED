@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SideNavService } from '../app/shared/side-nav.service';
 import { TokenStorageService } from './login/token-storage.service';
 import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
-import { element } from 'protractor';
 import { NgxRolesService, NgxPermissionsService } from 'ngx-permissions';
+import { observeOn } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,21 +11,23 @@ import { NgxRolesService, NgxPermissionsService } from 'ngx-permissions';
 })
 export class AppComponent implements OnInit{
     title : " SISED" ;
-    isloggedin:boolean ;
+    isloggedin:any ;
     token: string;
     user:string;
     roleName : string;
-    privilege: string[] = [];;
+    privilege: string[] = [];
     list : Array<any> ;
 
 
   ngOnInit() {
 
-   this.isloggedin=this.islogin();
-   console.log(this.isloggedin);
-   this.getUserDetail();
+    //     this.sidenavService.logintriggerBSubject.subscribe(()=>{
+          this.isloggedin=this.islogin();
+    //     console.log(this.isloggedin);
+    // });
 
-  this.chargerRoleUtilisateur();
+   this.getUserDetail();
+   this.chargerRoleUtilisateur();
    console.log(this.ngxRoleService.getRoles());
 
   }
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit{
     window.location.reload();
   });
   }
+
 
  getUserDetail(){
    this.user = this.tokenStorage.getUser();

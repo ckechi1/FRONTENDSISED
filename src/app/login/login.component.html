@@ -11,17 +11,16 @@
               <input matInput
               [(ngModel)]="form.username"
               name="username"
-              required
-              placeholder="Nom d'utilisateur">
+              placeholder="Nom d'utilisateur" required>
               <mat-icon color="primary" matSuffix>account_circle</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
               <input matInput type="password"
               name="password"
-              required
               [(ngModel)]="form.password"
-              placeholder="Mot de passe">
+              autocomplete="on"
+              placeholder="Mot de passe" required>
               <mat-icon color="primary" matSuffix>vpn_key</mat-icon>
             </mat-form-field>
           </mat-card-content>

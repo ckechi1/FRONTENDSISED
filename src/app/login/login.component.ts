@@ -36,16 +36,16 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.form).subscribe(
       data => {
-      //  console.log(data);
+        // console.log(data);
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.username);
         this.tokenStorage.saveRole(data.role[0].name);
         let privilegeData = data.role[0].privileges;
         this.tokenStorage.savePrivilege(privilegeData);
         this.isLoginFailed = false;
-       // this.navigateByReloadingPage();
+        this.navigateByReloadingPage();
         this.notificationService.success(" : : Connexion avec succes ");
-        this.sideNavService.logintriggerBSubject.subscribe(val =>{ val = this.isLoggedIn;});
+
       });
   }
 
@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   });
   }
+
 
 }
 
